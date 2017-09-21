@@ -32,7 +32,7 @@ public class ProDAO implements ProDAO_interface{
 		"INSERT INTO PROMOTION (PRO_NO,PRO_STR,PRO_END,STR_NO,PRO_CAT,PRO_DIS,DCLA_NO1,DCLA_NO2) VALUES('PRO_'||LPAD(TO_CHAR(PRO_SQ.NEXTVAL),4,'0'), ?, ?, ?, ?, ?, ?,?)";	
 	private static final String GET_ALL_STMT = 
 		"SELECT PRO_NO,PRO_STR,PRO_END,STR_NO,PRO_CAT,PRO_MON,PRO_DIS,DCLA_NO1,DCLA_NO2 FROM PROMOTION  order by PRO_NO";
-	private static final String GET_ONE_STMT = 
+	private static final String GET_ONE_STR = 
 		"SELECT PRO_NO,PRO_STR,PRO_END,STR_NO,PRO_CAT,PRO_MON,PRO_DIS,DCLA_NO1,DCLA_NO2 FROM PROMOTION where STR_NO = ?";
 	private static final String UPDATE = 
 			"UPDATE PROMOTION set PRO_END= ?  where PRO_NO = ?";
@@ -198,6 +198,66 @@ public class ProDAO implements ProDAO_interface{
 				proVO.setPro_no(rs.getString("pro_no"));
 				proVO.setPro_cat(rs.getString("pro_cat"));
 				proVO.setPro_mon(rs.getInt("pro_mpn"));
+				proVO.setPro_dis(rs.getDouble("pro_dis"));
+				proVO.setDcla_no1(rs.getString("dcla_no1"));
+				proVO.setDcla_no2(rs.getString("dcla_no2"));
+				
+				
+				list.add(proVO); // Store the row in the list
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return list;
+	}
+
+	@Override
+	public List<ProVO> getStrPro(String str_no) {
+		List<ProVO> list = new ArrayList<ProVO>();
+		ProVO proVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_STR);
+			pstmt.setString(1, str_no);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				// empVO 也稱為 Domain objects
+				proVO = new ProVO();
+				proVO.setPro_no(rs.getString("pro_no"));
+				proVO.setPro_str(rs.getDate("pro_str"));
+				proVO.setPro_end(rs.getDate("pro_end"));
+				proVO.setPro_cat(rs.getString("pro_cat"));
+				proVO.setPro_mon(rs.getInt("pro_mon"));
 				proVO.setPro_dis(rs.getDouble("pro_dis"));
 				proVO.setDcla_no1(rs.getString("dcla_no1"));
 				proVO.setDcla_no2(rs.getString("dcla_no2"));

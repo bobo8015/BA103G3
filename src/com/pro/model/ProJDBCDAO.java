@@ -29,7 +29,9 @@ public class ProJDBCDAO implements ProDAO_interface{
 		"SELECT PRO_NO,PRO_STR,PRO_END,STR_NO,PRO_CAT,PRO_MON,PRO_DIS,DCLA_NO1,DCLA_NO2 FROM PROMOTION where PRO_NO = ?";
 	private static final String UPDATE = 
 			"UPDATE PROMOTION set PRO_END= ?  where PRO_NO = ?";
-		
+	private static final String GET_ONE_STR = 
+			"SELECT PRO_NO,PRO_STR,PRO_END,STR_NO,PRO_CAT,PRO_MON,PRO_DIS,DCLA_NO1,DCLA_NO2 FROM PROMOTION where STR_NO = ?";
+	
 	@Override
 	public void insert1(ProVO proVO) {
 		Connection con= null;
@@ -337,12 +339,12 @@ public class ProJDBCDAO implements ProDAO_interface{
 //		System.out.println("---------------------");
 
 		// 查詢
-		List<ProVO> list = dao.getAll();
+		List<ProVO> list = dao.getStrPro("STR_0003");
 		for (ProVO aPro : list) {
 		System.out.print(aPro.getPro_no() + ",");
 		System.out.print(aPro.getPro_str() + ",");
 		System.out.print(aPro.getPro_end() + ",");
-		System.out.print(aPro.getStr_no() + ",");
+
 		System.out.print(aPro.getPro_cat() + ",");
 		System.out.print(aPro.getPro_mon() + ",");
 		System.out.print(aPro.getPro_dis() + ",");
@@ -351,6 +353,74 @@ public class ProJDBCDAO implements ProDAO_interface{
 		System.out.println("---------------------");			
 			System.out.println();
 		}
+	}
+
+	@Override
+	public List<ProVO> getStrPro(String str_no) {
+		
+		List<ProVO> list = new ArrayList<ProVO>();
+		ProVO proVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_ONE_STR);
+			pstmt.setString(1, str_no);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				proVO = new ProVO();
+				proVO.setPro_no(rs.getString("pro_no"));
+				proVO.setPro_str(rs.getDate("pro_str"));
+				proVO.setPro_end(rs.getDate("pro_end"));
+				proVO.setStr_no(rs.getString("str_no"));
+				proVO.setPro_cat(rs.getString("pro_cat"));
+				proVO.setPro_mon(rs.getInt("pro_mon"));
+				proVO.setPro_dis(rs.getDouble("pro_dis"));
+				proVO.setDcla_no1(rs.getString("dcla_no1"));
+				proVO.setDcla_no2(rs.getString("dcla_no2"));
+				list.add(proVO);
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+
+		return list;
+	
 	}
 
 	

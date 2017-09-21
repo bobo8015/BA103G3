@@ -59,6 +59,10 @@ public class ProService {
 		return dao.getAll();
 	}
 	
+	public List<ProVO> getStrPro(String str_no){
+		
+		return dao.getStrPro(str_no);
+	}
 	
 	
 }

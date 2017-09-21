@@ -4,7 +4,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.pro.model.*"%>
 <%@ page import="com.store.model.*"%>
-
+<%@ page import="com.dishclass.model.*"%>
 <%
 	String str_no = (String) session.getAttribute("str_no");	
 	
@@ -15,6 +15,7 @@
 %>
 
 	<jsp:useBean id="proSvc" scope="page" class="com.pro.model.ProService" />
+	<jsp:useBean id="dishclassSvc" scope="page" class="com.dishclass.model.DclaService" />
 <html lang="">
 	<head>
 		<meta charset="utf-8">
@@ -140,16 +141,25 @@
     				
     				
     		</thead>
-    			<c:forEach var="dishVO" items="${proSvc.getDishClassForStr(str_no)}" > 
+    			<c:forEach var="proVO" items="${proSvc.getStrPro(str_no)}" > 
     		<tbody>   			
     			<tr>
-    				<td>1</td>
-    				<td>PRO_NO_005</td>
-    				<th>2017-08-25</th>
-    				<th>2017-09-25</th>
-    				<td>金額</td>
-    				<td>800</td>
-    				<td>80%</td>
+    				<td></td>
+    				<td>${proVO.pro_no}</td>
+    				<th>${proVO.pro_str}</th>
+    				<th>${proVO.pro_end}</th>
+    				<td>${proVO.pro_cat}</td>
+    				<td>${(proVO.pro_mon==0) ? '' : proVO.pro_mon}
+    					<c:forEach var="dishclassVO" items="${dishclassSvc.all}">
+	    					<c:if test="${proVO.dcla_no1 == dishclassVO.dcla_no}">  
+	    						${dishclassVO.dcla_name}<br>
+	    					</c:if>
+	    					<c:if test="${proVO.dcla_no2 == dishclassVO.dcla_no}">  
+	    						${dishclassVO.dcla_name}<br>
+	    					</c:if> 
+    					</c:forEach> 
+    				</td>
+    				<td>${proVO.pro_dis}</td>
     				<td><button type="button" class="btn btn-danger ">下架</button></td>
     			</tr>  			
     		</tbody>

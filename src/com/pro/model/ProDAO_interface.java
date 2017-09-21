@@ -10,4 +10,5 @@ public interface ProDAO_interface {
 	public void update(ProVO proVO);	
 	public ProVO findByPrimaryKey(String pro_no);
 	public List<ProVO> getAll();
+	public List<ProVO> getStrPro(String str_no);
 }
