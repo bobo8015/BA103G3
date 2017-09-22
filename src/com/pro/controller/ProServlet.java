@@ -1,6 +1,7 @@
 package com.pro.controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,6 +28,8 @@ public class ProServlet extends HttpServlet{
 		String action = req.getParameter("action");
 		String str_no = req.getParameter("str_no");
 		System.out.print(str_no);
+		
+		
 		if("Insert_For_Pro".equals(action)){
 			
 			List<String> errorMsgs = new LinkedList<String>();
@@ -41,6 +44,12 @@ public class ProServlet extends HttpServlet{
 			
 			pro_str = java.sql.Date.valueOf(req.getParameter("datestr").trim());
 			pro_end = java.sql.Date.valueOf(req.getParameter("dateend").trim());
+			
+			long startDate = pro_str.getTime();
+			
+			System.out.println(startDate);
+//			String tyu =pro_str.toString();
+//			Date abc = DateFormat.parse(tyu);
 			
 			if(pro_str .equals(pro_end) ){
 				pro_str =new java.sql.Date(System.currentTimeMillis());

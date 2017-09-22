@@ -162,33 +162,27 @@
                 		<c:forEach var="strVO" items="${storeSvc.all}">	
                 		
                 			<c:if test="${favVO.str_no==strVO.str_no}"> 
-                			<div>
-                			<img class="abc" src="http://localhost:8081<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=${strVO.str_no} ">
-                			${strVO.str_name} 
-                			<div style="float:right;">
-	                  	
-							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/fav/fav.do">
-						    <input type="submit" class="btn btn-danger btn-tb" value="移除">    		
-						    <input type="hidden" name="mem_no" value="${mem_no}">
-						    <input type="hidden" name="str_no" value="${favVO.str_no}">
-						    <input type="hidden" name="action"value="delete_For_Fav"></FORM>
-	                  		</div>
-                			</div>
-               				
-               				
+                			   <div>
+                      	     <img class="abc" src="http://localhost:8081<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=${strVO.str_no} ">
+                      			${strVO.str_name} 
+                			       <div style="float:right;">
+  	                  	
+                							  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/fav/fav.do">
+                						    <input type="submit" class="btn btn-danger btn-tb" value="移除">    		
+                						    <input type="hidden" name="mem_no" value="${mem_no}">
+                						    <input type="hidden" name="str_no" value="${favVO.str_no}">
+                						    <input type="hidden" name="action"value="delete_For_Fav"></FORM>
+                                
+	                  	        </div>
+                			   </div>  		              				
                 			</c:if>
-                		</c:forEach> 	
-	                  	
-                  	</div>
-              </c:forEach> 
-              
-               
-                </div>
-                 
-			</div>
-              
-          </div>
-      </div>	
+                		</c:forEach> 	                  	
+                  </div>
+                </c:forEach>              
+              </div>                 
+			     </div>             
+        </div>
+    </div>	
 		
 
 

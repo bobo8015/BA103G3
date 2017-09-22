@@ -14,6 +14,9 @@
 		str_no = (String) session.getAttribute("str_no");		
 	}
 %>
+
+
+
 <!DOCTYPE html>
 <html lang="">
 	<head>
@@ -124,15 +127,23 @@
 <!-- 右邊開始 =======================================-->			
 		<div class="col-xs-12 col-sm-9" >
 			
+			<%java.sql.Date date_SQL = new java.sql.Date(System.currentTimeMillis()+83600000);%>
+			
+		
+		<jsp:useBean id="dishSvc" scope="page" class="com.dish.model.DishService" />
+		<jsp:useBean id="dishclassSvc" scope="page" class="com.dishclass.model.DclaService" />
+			
+			
 
+			
 			<div class="page-header order-page">優惠上架</div>
 			<div class="toolbar">
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/pro/proin.do" >
 				<div class="margintt"><td>開始日期:</td>
-					<input type="date" name="datestr" id="bookdate" value="2017-09-09" min="2017-09-08" max="2020-09-18">
+					<input type="date" name="datestr" id="bookdate" value=<%= date_SQL %> min="2017-09-08" max="2020-09-18">
 				</div>
 				<div class="margintt"><td>結束日期:</td>
-					<input type="date" name="dateend" id="bookdate" value="2018-09-09" min="2017-09-09" max="2020-09-18"><br>
+					<input type="date" name="dateend" id="bookdate" value=<%= date_SQL %> min="2017-09-09" max="2020-09-18"><br>
 				</div>
 					
 				<div class="margintt">優惠種類:
@@ -141,9 +152,8 @@
 						<option value="money">金額</option>
 					</select></div>
 	
-				<jsp:useBean id="dishSvc" scope="page" class="com.dish.model.DishService" />
-				<jsp:useBean id="dishclassSvc" scope="page" class="com.dishclass.model.DclaService" />
-<!-- 					getDishClassForStr -->
+				
+
 				<div class="margintt">
 					種類1:<select name="dcla_1" class="select-sm" >
 							<c:forEach var="dishVO" items="${dishSvc.getDishClassForStr(str_no)}" > 

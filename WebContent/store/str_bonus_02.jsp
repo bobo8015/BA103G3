@@ -123,15 +123,15 @@
 <!-- 右邊開始 =======================================-->			
 		<div class="col-xs-12 col-sm-9" >
 			
-
+			<%java.sql.Date date_SQL = new java.sql.Date(System.currentTimeMillis()+83600000);%>
 			<div class="page-header order-page">優惠上架</div>
 			<div class="toolbar">
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/pro/proin.do" >
 				<div class="margintt"><td>開始日期:</td>
-					<input type="date" name="datestr" id="bookdate" value="2017-09-09" min="2017-09-08" max="2020-09-18">
+					<input type="date" name="datestr" id="bookdate" value=<%=date_SQL%> min="2017-09-08" max="2020-09-18">
 				</div>
 				<div class="margintt"><td>結束日期:</td>
-					<input type="date" name="dateend" id="bookdate" value="2018-09-09" min="2017-09-09" max="2020-09-18"><br>
+					<input type="date" name="dateend" id="bookdate" value=<%=date_SQL%> min="2017-09-09" max="2020-09-18"><br>
 				</div>
 					
 				<div class="margintt">優惠種類:
