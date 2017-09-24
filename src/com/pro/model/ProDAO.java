@@ -33,9 +33,9 @@ public class ProDAO implements ProDAO_interface{
 	private static final String GET_ALL_STMT = 
 		"SELECT PRO_NO,PRO_STR,PRO_END,STR_NO,PRO_CAT,PRO_MON,PRO_DIS,DCLA_NO1,DCLA_NO2 FROM PROMOTION  order by PRO_NO";
 	private static final String GET_ONE_STR = 
-		"SELECT PRO_NO,PRO_STR,PRO_END,STR_NO,PRO_CAT,PRO_MON,PRO_DIS,DCLA_NO1,DCLA_NO2 FROM PROMOTION where STR_NO = ?";
+		"SELECT PRO_NO,PRO_STR,PRO_END,STR_NO,PRO_CAT,PRO_MON,PRO_DIS,DCLA_NO1,DCLA_NO2 FROM PROMOTION where STR_NO = ? and PRO_STR >= SYSDATE";
 	private static final String UPDATE = 
-			"UPDATE PROMOTION set PRO_END= ?  where PRO_NO = ?";
+		"UPDATE PROMOTION set PRO_END= ?  where PRO_NO = ?";
 	@Override
 	public void insert1(ProVO proVO) {
 		Connection con= null;

@@ -132,7 +132,7 @@
     		<thead>
     			<tr>
     				<th>&nbsp;</th>
-    				<th>優惠編號</th>
+    				
     				<th>開始日期</th>
     				<th>結束日期</th>
     				<th>優惠種類</th>
@@ -145,7 +145,7 @@
     		<tbody>   			
     			<tr>
     				<td></td>
-    				<td>${proVO.pro_no}</td>
+    				
     				<th>${proVO.pro_str}</th>
     				<th>${proVO.pro_end}</th>
     				<td>${proVO.pro_cat}</td>
@@ -160,7 +160,7 @@
     					</c:forEach> 
     				</td>
     				<td>${proVO.pro_dis}</td>
-    				<td><button type="button" class="btn btn-danger ">下架</button></td>
+    				
     			</tr>  			
     		</tbody>
     		</c:forEach>	

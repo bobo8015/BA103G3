@@ -1,47 +1,33 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ page import="java.util.*"%>
+<%@ page import="com.store.model.*"%>
+
+<%
+	String str_no = (String) session.getAttribute("str_no");	
+	
+	if(str_no == null){
+		session.setAttribute("str_no", "STR_0003");		
+		str_no = (String) session.getAttribute("str_no");		
+	}
+%>
+
+<jsp:useBean id="storeSvc" scope="page" class="com.store.model.strService" />
+
 <html lang="">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-		<title>Profile Page</title>
+		<title>食在方便</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 		<!--[if lt IE 9]>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src=" https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
-		<link rel="stylesheet" type="text/css" href="../css/base.css">
-		<link rel="stylesheet" type="text/css" href="./css/style.css">
-		<style type="text/css">
-			#css_table {
-				display:table;
-				font-size: larger;    
-			}	
-			.css_tr {
-				display: table-row;
-			}
-			.css_td {
-				display: table-cell;
-				padding-top: 6px;
-				padding-left: 20px;
-			}
-			.input-group-addon {
-				margin-bottom: 4px;
-				margin-right: 2em;
-			}
-			.strimg {
-				width: 150px; 
-				height: 150px;
-			}
-			div.update {
-				border-color: #a9a9a9;
-				color: #000;
-				margin-top: 20px;
-				display: block;
-				width: 280%;
-				text-align: center;
-			}			
-		</style>
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/store/css/str_profile.css">
+		
 	</head>
 	<body>
 <!-- header======================================= -->	
@@ -123,21 +109,22 @@
 	<div class="row">
 <!-- 左邊開始 =======================================-->
 		<div class="col-xs-12 col-sm-3">
-
+			
 			<div class="list-group">
 				<a href="#" class="list-group-item list-group-custom active">店家帳號</a>
-				<a href="str_profile01.html" class="list-group-item">基本資料</a>
-				<a href="str_profile02.html" class="list-group-item list-group-item-info">修改資料</a>
+				<a href="str_profile01.html" class="list-group-item list-group-item-info">基本資料</a>
+				<a href="str_profile02.html" class="list-group-item">修改資料</a>
 				<a href="str_profile03.html" class="list-group-item">修改密碼</a>
 			</div>
+
 		</div>
 
 
 <!-- 右邊開始 =======================================-->			
-		<div class="col-xs-12 col-sm-9">
-		
-		<form action="" method="">
+		<div class="col-xs-12 col-sm-9 between">
 			<div id="css_table">
+				<c:forEach var="storVO" items="${storeSvc.getOneStr(str_no)}" >
+				</c:forEach> 
 				<div class="css_tr">
 					<div class="input-group-addon">店家頭像</div>
 					<div class="css_td">
@@ -147,86 +134,74 @@
 
 				<div class="css_tr">
 					<div class="input-group-addon">店家簡介</div>
-					<div class="css_td"><input class="input" type="text" name="STR_NAME" value="未說明"></div>
+					<div class="css_td">
+						未說明
+					</div>
 				</div>
-
 
 				<div class="css_tr">
 					<div class="input-group-addon">店家名稱</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STR_NAME" value="百花窯" disabled>
+					百花窯
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">店家類別</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STOCA_NAME" value="中式料理" disabled>
+					中式料理
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">店家地址</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STR_COUN" value="新竹市">
-						<input class="input" type="text" name="STR_CITY" value="北區">
-						<input class="input" type="text" name="STR_ADDR" value="北大路186號" >
+						新竹市
+						北區
+						北大路186號
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">聯絡人</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STR_ATN" value="李瑞希">
+						李瑞希
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">聯絡電話</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STR_TEL" value="03-5247851">
+						03-5247851
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">聯絡信箱</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STR_MAL" value="raylee0815@gmail.com">
+						raylee0815@gmail.com
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">平均備餐時間</div>
 					<div class="css_td">
-						<select name="month" class="select-sm">
-							<option value=“15”>15</option>
-							<option value="30" selected>30</option>
-							<option value="60">60</option>
-							<option value="90">90</option>
-						</select>
-						&nbsp;分鐘
+						30  分鐘
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">提供外送</div>
 					<div class="css_td">
-						<input  type="radio" name="STR_SHIP" id="true" value="TRUE" checked>
-						<label for="true">&nbsp;Yes</label>&nbsp;
-						<input  type="radio" name="STR_SHIP" id="false" value="FALSE">
-						<label for="false">&nbsp;No</label>
+						<input type="radio" name="STR_SHIP" id="true" value="TRUE" checked disabled> Yes
 					</div>
+					
 				</div>
-
-				<div class="update">
-					<button class="btn btn-update">修改</button>
-				</div>
-
+				
 			</div>
-
-		</form>
+				
 		</div>
-	
+		
 <!-- 右邊結束 =======================================-->
 	</div>
 </div>

@@ -238,3 +238,31 @@ a.forget-psw.forget-psw:focus {
 footer {
 	margin-top: 0;
 }
+#css_table {
+	display:table;
+	font-size: larger;    
+}	
+.css_tr {
+	display: table-row;
+}
+.css_td {
+	display: table-cell;
+	padding-top: 6px;
+	padding-left: 20px;
+}
+.input-group-addon {
+	margin-bottom: 4px;
+	margin-right: 2em;
+}
+.strimg {
+	width: 150px; 
+	height: 150px;
+}
+div.update {
+	border-color: #a9a9a9;
+	color: #000;
+	margin-top: 20px;
+	display: block;
+	width: 280%;
+	text-align: center;
+}		

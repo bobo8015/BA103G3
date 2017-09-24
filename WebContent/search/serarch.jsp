@@ -207,7 +207,16 @@
         <div>
         <h4><b>店家3</b></h4>
         (02)1234-5678<br>
-        台北市XX區XX巷XX號
+      	  台北市XX區XX巷XX號
+      	  <c:if test="${not empty errorMsgs}">
+			  <font color='red'>
+			  <ul>
+			  <c:forEach var="message" items="${errorMsgs}">
+			    <li>${message}</li>
+			  </c:forEach>
+			  </ul>
+			  </font>
+			</c:if>
         </div>
 
         <div class="store_introduce">

@@ -1,47 +1,34 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ page import="java.util.*"%>
+<%@ page import="com.fav.model.*"%>
+<%@ page import="com.store.model.*"%>
+
+<%
+	String str_no = (String) session.getAttribute("str_no");	
+	
+	if(str_no == null){
+		session.setAttribute("str_no", "STR_0003");		
+		str_no = (String) session.getAttribute("str_no");		
+	}
+%>
+
+
 <!DOCTYPE html>
 <html lang="">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-		<title>Profile Page</title>
+		<title>食在方便</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 		<!--[if lt IE 9]>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
-		<link rel="stylesheet" type="text/css" href="../css/base.css">
-		<link rel="stylesheet" type="text/css" href="./css/style.css">
-		<style type="text/css">
-			#css_table {
-				display:table;
-				font-size: larger;    
-			}	
-			.css_tr {
-				display: table-row;
-			}
-			.css_td {
-				display: table-cell;
-				padding-top: 6px;
-				padding-left: 20px;
-			}
-			.input-group-addon {
-				margin-bottom: 4px;
-				margin-right: 2em;
-			}
-			.strimg {
-				width: 150px; 
-				height: 150px;
-			}
-			div.update {
-				border-color: #a9a9a9;
-				color: #000;
-				margin-top: 20px;
-				display: block;
-				width: 280%;
-				text-align: center;
-			}			
-		</style>
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/store/css/str_profile.css">
+
 	</head>
 	<body>
 <!-- header======================================= -->	

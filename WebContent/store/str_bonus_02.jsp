@@ -128,10 +128,10 @@
 			<div class="toolbar">
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/pro/proin.do" >
 				<div class="margintt"><td>開始日期:</td>
-					<input type="date" name="datestr" id="bookdate" value=<%=date_SQL%> min="2017-09-08" max="2020-09-18">
+					<input type="date" name="datestr" id="bookdate" value=<%=date_SQL%> min=<%= date_SQL %> max="2020-09-18">
 				</div>
 				<div class="margintt"><td>結束日期:</td>
-					<input type="date" name="dateend" id="bookdate" value=<%=date_SQL%> min="2017-09-09" max="2020-09-18"><br>
+					<input type="date" name="dateend" id="bookdate" value=<%=date_SQL%> min=<%= date_SQL %> max="2020-09-18"><br>
 				</div>
 					
 				<div class="margintt">優惠種類:
@@ -141,10 +141,10 @@
 						
 					</select></div>
 				<div class="margintt">
-					條件:<input type="number" name="condition" min=0>
+					條件:<input type="number" name="condition" min=0>要達到優惠總金額
 				</div>	
 				<div class="margintt">
-					折扣:<input type="number" name="discount" min=0 max=100>
+					折扣:<input type="number" name="discount" min=0 max=100>例:85折 輸入85
 				</div>
 					
 				<td><button type="submit" class="btn btn-info margintt">上架</button>
@@ -155,7 +155,7 @@
 			</FORM>
 			</div>
 			<c:if test="${not empty errorMsgs}">
-			  <font color='red'>請修正以下錯誤:
+			  <font color='red'>
 			  <ul>
 			  <c:forEach var="message" items="${errorMsgs}">
 			    <li>${message}</li>

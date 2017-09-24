@@ -140,10 +140,10 @@
 			<div class="toolbar">
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/pro/proin.do" >
 				<div class="margintt"><td>開始日期:</td>
-					<input type="date" name="datestr" id="bookdate" value=<%= date_SQL %> min="2017-09-08" max="2020-09-18">
+					<input type="date" name="datestr" id="bookdate" value=<%= date_SQL %> min=<%= date_SQL %> max="2020-09-18">
 				</div>
 				<div class="margintt"><td>結束日期:</td>
-					<input type="date" name="dateend" id="bookdate" value=<%= date_SQL %> min="2017-09-09" max="2020-09-18"><br>
+					<input type="date" name="dateend" id="bookdate" value=<%= date_SQL %> min=<%= date_SQL %> max="2020-09-18"><br>
 				</div>
 					
 				<div class="margintt">優惠種類:
@@ -191,7 +191,7 @@
 			</FORM>
 			</div>
 			<c:if test="${not empty errorMsgs}">
-			  <font color='red'>請修正以下錯誤:
+			  <font color='red'>
 			  <ul>
 			  <c:forEach var="message" items="${errorMsgs}">
 			    <li>${message}</li>

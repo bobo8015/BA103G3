@@ -74,7 +74,7 @@ public class FavServlet extends HttpServlet{
 			RequestDispatcher successView = req.getRequestDispatcher(url); 
 			successView.forward(req, res);
 		} catch(Exception e){
-			errorMsgs.add("刪除資料失敗:"+e.getMessage());
+			errorMsgs.add("刪除最愛店家失敗:"+e.getMessage());
 			RequestDispatcher failureView = req
 					.getRequestDispatcher("/fav/member_favorite.jsp");
 			failureView.forward(req, res);
@@ -83,14 +83,14 @@ public class FavServlet extends HttpServlet{
 	}
 	
 	if("insert_For_Fav".equals(action)){
+		
 		List<String> errorMsgs = new LinkedList<String>();
-		// Store this set in the request scope, in case we need to
-		// send the ErrorPage view.
 		req.setAttribute("errorMsgs", errorMsgs);
 		
-		try{String str_no = new String(req.getParameter("str_no"));
-			
+		try{
+			String str_no = new String(req.getParameter("str_no"));			
 			FavVO favVO = new FavVO();
+									
 			
 			favVO.setMem_no(mem_no);
 			favVO.setStr_no(str_no);
@@ -99,18 +99,26 @@ public class FavServlet extends HttpServlet{
 			
 			favVO = favSvc.addFav(mem_no, str_no);
 			
+			
+			
+			
+			
+			}catch(Exception e){
+			
+			errorMsgs.add("已經加入我的最愛");
+			RequestDispatcher failureView = req
+					.getRequestDispatcher("/search/serarch66.jsp");
+			failureView.forward(req, res);
+			
+			}
+			
+					
 			String url = "/search/serarch.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			RequestDispatcher successView = req.getRequestDispatcher(url); 
 			successView.forward(req, res);	
 			
 			
-		}catch(Exception e){
-			errorMsgs.add(e.getMessage());
-			RequestDispatcher failureView = req
-					.getRequestDispatcher("/search/serarch.jsp");
-			failureView.forward(req, res);
-			
-		}
+		
 	}
 	
 }

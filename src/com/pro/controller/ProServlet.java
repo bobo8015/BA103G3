@@ -2,6 +2,8 @@ package com.pro.controller;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,6 +37,9 @@ public class ProServlet extends HttpServlet{
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
+			ProService proSvc = new ProService(); 
+			
+			
 			java.sql.Date pro_str  = null;
 			java.sql.Date pro_end = null;
 			Integer pro_mon = null;
@@ -45,23 +50,57 @@ public class ProServlet extends HttpServlet{
 			pro_str = java.sql.Date.valueOf(req.getParameter("datestr").trim());
 			pro_end = java.sql.Date.valueOf(req.getParameter("dateend").trim());
 			
-			long startDate = pro_str.getTime();
+			long startDate = pro_str.getTime();			
+			long endDate = pro_end.getTime();
+			boolean date_is_same=false;
+			
+			List<ProVO> list = new ArrayList<ProVO>();
+			list = proSvc.getStrPro(str_no);
+			
+			
+			
+			for(ProVO listdate:list){
+				
+				Date old_str =listdate.getPro_str();
+				Date old_end =listdate.getPro_end();
+				
+				long old_str_long = old_str.getTime();			
+				long old_end_long = old_end.getTime();
+				
+				
+				if(startDate>=old_str_long & startDate<=old_end_long){
+					date_is_same =true;
+					
+				}
+				
+			}
+			if(date_is_same){
+				errorMsgs.add("這時段已經有優惠");		
+				}
+			
 			
 			System.out.println(startDate);
-//			String tyu =pro_str.toString();
-//			Date abc = DateFormat.parse(tyu);
+			System.out.println(endDate);
+			
 			
 			if(pro_str .equals(pro_end) ){
-				pro_str =new java.sql.Date(System.currentTimeMillis());
-				pro_end =new java.sql.Date(System.currentTimeMillis());
-				errorMsgs.add("開始結束日期相同");
+			
+				errorMsgs.add("開始結束日期不能相同");
 			}
 			
+			if(endDate < startDate){
+				errorMsgs.add("結束日期不能在開始日期前");
+			}
 			String pro_cat =req.getParameter("style"); 		
 				
 			if ("money".equals(pro_cat)){
 				
 				System.out.print(pro_cat);
+				
+				
+				
+				
+				
 				try{
 					pro_mon = new Integer(req.getParameter("condition").trim());
 				
@@ -89,15 +128,15 @@ public class ProServlet extends HttpServlet{
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("proVO", proVO); 
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/store/str_bonus_03.jsp");
+							.getRequestDispatcher("/store/str_bonus_02.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 				
-				ProService proSvc = new ProService();
+				
 				proVO =proSvc.addPro1(pro_str, pro_end, str_no, pro_cat, pro_mon, pro_dis);
 				
-				String url = "/store/str_bonus_02.jsp";
+				String url = "/store/str_bonus_01.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);
 				
@@ -136,10 +175,10 @@ public class ProServlet extends HttpServlet{
 						return;
 					}
 					
-					ProService proSvc = new ProService();
+					
 					proVO =proSvc.addPro2(pro_str, pro_end, str_no, pro_cat,pro_dis, dcla_no1,dcla_no2 );
 					
-					String url = "/store/str_bonus_03.jsp";
+					String url = "/store/str_bonus_01.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); 
 					successView.forward(req, res);
 					
