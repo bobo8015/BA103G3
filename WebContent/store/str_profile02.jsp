@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ page import="java.util.*"%>
-<%@ page import="com.fav.model.*"%>
+<%@ page import="com.store.model.*"%>
+<%@ page import="com.storecategory.model.*"%>
 
 <%
 	String str_no = (String) session.getAttribute("str_no");	
@@ -12,7 +13,9 @@
 		str_no = (String) session.getAttribute("str_no");		
 	}
 %>
-
+<jsp:useBean id="storeSvc" scope="page" class="com.store.model.StrService" />
+<jsp:useBean id="dishclassSvc" scope="page" class="com.dishclass.model.DclaService" />
+ <% StrVO storVO = storeSvc.getOneStr(str_no); %>
 
 <html lang="">
 	<head>
@@ -26,9 +29,9 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/store/css/str_profile.css">
-		
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/store/css/style.css">
 	</head>
-	<body>
+	<body onload="gettime();">
 <!-- header======================================= -->	
 		<div class="page-header center-header">
 		  <span>食在方便<small>店家中心</small></span>
@@ -44,7 +47,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="str_profile01.html">百花窯</a>
+					<a class="navbar-brand" href="str_profile01.html"><%= storVO.getStr_name()%></a>
 				</div>
 				
 		<!-- 手機隱藏選單區=======================================-->
@@ -62,7 +65,7 @@
 			<!-- 右選單 =======================================-->
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">百花窯 您好<b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= storVO.getStr_name()%> 您好<b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="str_profile01.html">店家資料</a></li>
 								<li><a href="str_order.html">訂單查詢</a></li>
@@ -121,71 +124,73 @@
 <!-- 右邊開始 =======================================-->			
 		<div class="col-xs-12 col-sm-9">
 		
-		<form action="" method="">
-			<div id="css_table">
-				<div class="css_tr">
+		
+			
+			<table>
+				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/store/storeupdata.do" >
+				<div class="css_tr">		
 					<div class="input-group-addon">店家頭像</div>
-					<div class="css_td">
-					<img class="strimg" src="images/logo.png">		
-					</div>
+					<div class="css_td"><img class="strimg" src="http://localhost:8081<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=<%= str_no%> "></div>
 				</div>
-
+				</FORM>
+				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/store/storeupdata.do" >
+				 
 				<div class="css_tr">
 					<div class="input-group-addon">店家簡介</div>
-					<div class="css_td"><input class="input" type="text" name="STR_NAME" value="未說明"></div>
+					<div class="css_td"><input class="input" type="text" name="STR_NAME" value=<%= storVO.getStr_note()%>></div>
 				</div>
 
 
 				<div class="css_tr">
 					<div class="input-group-addon">店家名稱</div>
-					<div class="css_td">
-						<input class="input" type="text" name="STR_NAME" value="百花窯" disabled>
-					</div>
+					<div class="css_td"><input class="input" type="text" name="STR_NAME" value=<%= storVO.getStr_name()%> disabled></div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">店家類別</div>
-					<div class="css_td">
-						<input class="input" type="text" name="STOCA_NAME" value="中式料理" disabled>
-					</div>
+					<div class="css_td"><input class="input" type="text" name="STOCA_NAME" value=<%= storVO.getStoca_no()%> disabled></div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">店家地址</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STR_COUN" value="新竹市">
-						<input class="input" type="text" name="STR_CITY" value="北區">
-						<input class="input" type="text" name="STR_ADDR" value="北大路186號" >
+						<input class="input" type="text" name="STR_COUN" value=<%= storVO.getStr_cou()%>>
+					
+						
+						<input class="input" type="text" name="STR_CITY" value=<%= storVO.getStr_city()%>>
+					
+					
+						<input class="input" type="text" name="STR_ADDR" value=<%= storVO.getStr_addr()%>>
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">聯絡人</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STR_ATN" value="李瑞希">
+						<input class="input" type="text" name="STR_ATN" value=<%= storVO.getStr_atn()%>>
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">聯絡電話</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STR_TEL" value="03-5247851">
+						<input class="input" type="text" name="STR_TEL" value=<%= storVO.getStr_tel()%>>
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">聯絡信箱</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STR_MAL" value="raylee0815@gmail.com">
+						<input class="input" type="text" name="STR_MAL" value=<%= storVO.getStr_ma()%>>
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">平均備餐時間</div>
 					<div class="css_td">
-						<select name="month" class="select-sm">
+						<select name="month" class="select-sm" id="time">
 							<option value=“15”>15</option>
-							<option value="30" selected>30</option>
+							<option value="30">30</option>
 							<option value="60">60</option>
 							<option value="90">90</option>
 						</select>
@@ -196,140 +201,63 @@
 				<div class="css_tr">
 					<div class="input-group-addon">提供外送</div>
 					<div class="css_td">
-						<input  type="radio" name="STR_SHIP" id="true" value="TRUE" checked>
-						<label for="true">&nbsp;Yes</label>&nbsp;
-						<input  type="radio" name="STR_SHIP" id="false" value="FALSE">
-						<label for="false">&nbsp;No</label>
+						<input type="radio" name="STR_SHIP" id="true" value="TRUE" <%= "TRUE".equals(storVO.getStr_ship()) ? "checked" : " "%> >
+						<label for="true">Yes</label>&nbsp;
+						<input type="radio" name="STR_SHIP" id="false" value="FALSE" <%= "FALSE".equals(storVO.getStr_ship()) ? "checked" : " "%> >
+						<label for="false">No</label>
 					</div>
 				</div>
 
-				<div class="update">
-					<button class="btn btn-update">修改</button>
+				<div class="css_tr">
+					<div class="css_td">
+						<input class="btn btn-update" type="submit" value="修改">
+	       				<input type="hidden" name="action" value="getOne_For_Display">
+       				</div>
 				</div>
-
+       				
+				</form>
+		
+			
 			</div>
-
-		</form>
+		
 		</div>
+		
 	
 <!-- 右邊結束 =======================================-->
 	</div>
-</div>
+</table>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-<!-- footer -->
-<!-- 		<footer >
-	      <div class="container">
-	        <div class="col-sm-2">
-	          <img src="../images/logo.jpg" class="img-responsive">
-	        </div>
-	        <div class="col-sm-2">
-	          <h5>公司</h5>
-	          <ul class="list-unstyled">
-	            <li><a href="#">文件資料</a></li>
-	            <li><a href="#">Packt出版社</a></li>
-	            <li><a href="#">關於我們</a></li>
-	            <li><a href="#">聯絡資訊</a></li>
-	          </ul>
-	        </div>
-	        <div class="col-sm-2">
-	          <h5>社群</h5>
-	          <ul class="list-unstyled">
-	            <li><a href="#">Facebook</a></li>
-	            <li><a href="#">Twitter</a></li>
-	            <li><a href="#">部落格</a></li>
-	          </ul>
-	        </div>
-	        <div class="col-sm-2">
-	          <h5>客戶支援</h5>
-	          <ul class="list-unstyled">
-	            <li><a href="#">聯絡資訊</a></li>
-	            <li><a href="#">隱私政策</a></li>
-	            <li><a href="#">條款與細則</a></li>
-	            <li><a href="#">服務台</a></li>
-	          </ul>
-	        </div>
-	        <div class="col-sm-4">
-	          <address>
-	            <strong>食在方便有限公司</strong>
-	            地址第 1 行<br>
-				地址第 2 行<br>
-	            <abbr title="Phone">TEL：</abbr> (02) 1234-5678
-	          </address>
-	        </div>
-	      </div>
-	    </footer>
-
- -->
-
-
-		
 		
 		
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="/js/plugins/piexif.js"></script>
-		<script src="/js/fileinput.js"></script>
+
 		<script>
-		function $id(id) {
-			return document.getElementById(id);
-		}
-		function Output(msg) {
-			var m = $id("messages");
-			m.innerHTML = msg + m.innerHTML;
-		}
-		if (window.File && window.FileList && window.FileReader) {
-			Init();
-		}
-		function Init() {
-
-			var fileselect = $id("fileselect"),
-				filedrag = $id("filedrag"),
-				submitbutton = $id("submitbutton");
-
-			// file select
-			fileselect.addEventListener("change", FileSelectHandler, false);
-
-			// is XHR2 available?
-			var xhr = new XMLHttpRequest();
-			if (xhr.upload) {
+		
+		function gettime(){
+		
+			var time = <%=storVO.getStr_pre()%>;
 			
-				// file drop
-				filedrag.addEventListener("dragover", FileDragHover, false);
-				filedrag.addEventListener("dragleave", FileDragHover, false);
-				filedrag.addEventListener("drop", FileSelectHandler, false);
-				filedrag.style.display = "block";
-				
-				// remove submit button
-				submitbutton.style.display = "none";
+			switch(time) {
+		    case 15:
+		    	$('#time').val('15');
+		        break;
+		    case 30:
+		    	$('#time').val('30');
+		        break;
+		    case 60:
+		    	$('#time').val('60');
+		        break;
+		    case 90:
+		    	$('#time').val('90');
+		        break;
 			}
-
-		}
+ 		}
+		
+		
+		
 
 
 

@@ -20,9 +20,9 @@
 		<url-pattern>/fav/fav.do</url-pattern>
 	</servlet-mapping>
 	
-		<servlet>
-	<servlet-name>FavServlet2</servlet-name>
- 	<servlet-class>com.fav.controller.FavServlet</servlet-class>
+	<servlet>
+		<servlet-name>FavServlet2</servlet-name>
+	 	<servlet-class>com.fav.controller.FavServlet</servlet-class>
 	</servlet>
  
  	<servlet-mapping>
@@ -40,7 +40,7 @@
 		<url-pattern>/tools/Mem_Red_Img</url-pattern>
 	</servlet-mapping>
  	
- 		<servlet>
+ 	<servlet>
 		<servlet-name>ProServlet</servlet-name>
 		<servlet-class>com.pro.controller.ProServlet</servlet-class>
 	</servlet>
@@ -49,4 +49,16 @@
 		<servlet-name>ProServlet</servlet-name>
 		<url-pattern>/pro/proin.do</url-pattern>
 	</servlet-mapping>
+	
+	 	<servlet>
+		<servlet-name>StoreServlet</servlet-name>
+		<servlet-class>com.store.controller.StrServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>StoreServlet</servlet-name>
+		<url-pattern>/store/storeupdata.do</url-pattern>
+	</servlet-mapping>
+	
+	
  </web-app>

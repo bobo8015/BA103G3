@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ page import="java.util.*"%>
-<%@ page import="com.fav.model.*"%>
 <%@ page import="com.store.model.*"%>
 
 <%
@@ -13,6 +12,8 @@
 		str_no = (String) session.getAttribute("str_no");		
 	}
 %>
+
+<jsp:useBean id="storeSvc" scope="page" class="com.store.model.StrService" />
 
 
 <!DOCTYPE html>

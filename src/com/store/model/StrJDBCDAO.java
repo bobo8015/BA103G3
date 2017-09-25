@@ -16,22 +16,22 @@ import com.storecategory.model.StocaVO;
 
 public class StrJDBCDAO implements StrDAO_interface {
 	
-	private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
-	private static final String USER = "easyfood";
-	private static final String PASSWORD = "easyfood";
+	private static final String URL = "jdbc:oracle:thin:@10.211.55.3:1521:XE";
+	private static final String USER = " test0101";
+	private static final String PASSWORD = "test0101";
 	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
 	
 	private static final String INSERT = "INSERT INTO STORE(STR_NO, STR_NAME, STR_COU, STR_CITY, STR_ADDR, STR_TEL, STR_ATN,"
 			+ "STR_PRE,STR_SHIP, STOCA_NO, STR_ACC, STR_PAS, STR_MA, STR_LONG, STR_LAT)"
 			+ "VALUES ('STR_'||LPAD(STR_SQ.NEXTVAL, 4, '0'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String UPDATE = "UPDATE STORE SET STR_NAME = ?, STR_COU = ?, STR_CITY = ?, STR_ADDR = ?, STR_TEL = ?," 
-			+"STR_ATN = ?, STR_PRE = ?, STR_SHIP = ?, STR_MA = ?, STR_LONG = ?, STR_LAT = ?"
+	private static final String UPDATE = "UPDATE STORE SET STR_COU = ?, STR_CITY = ?, STR_ADDR = ?, STR_TEL = ?," 
+			+"STR_ATN = ?, STR_PRE = ?, STR_SHIP = ?, STR_MA = ?, STR_LONG = ?, STR_LAT = ?, STR_IMG = ?, STR_NOTE = ?"
 			+"WHERE STR_NO = ?";
 	private static final String UPDATE_INFO = "UPDATE STORE SET STR_IMG = ?, STR_NOTE = ? WHERE STR_NO = ?";
-	private static final String UPDATE_INFO_IMG = "UPDATE STORE SET STR_IMG = ? WHERE STR_NO = ?";
 	private static final String UPDATE_PAS = "UPDATE STORE SET STR_PAS = ? WHERE STR_NO = ?";
 	private static final String UPDATE_STAT = "UPDATE STORE SET STR_STAT = ? WHERE STR_NO = ?";
 	private static final String GET_ONE = "SELECT * FROM STORE WHERE STR_NO = ?";
+	private static final String GET_STR_NO = "SELECT STR_NO WHERE STR_ACC = ?";
 	private static final String GET_ALL = "SELECT * FROM STORE ORDER BY STR_NO";
 	private static final String FIND_BY_AREA = "SELECT * FROM STORE WHERE STR_COU||STR_CITY||STR_ADDR LIKE ?";
 	private static final String FIND_BY_STOCA_NO = "SELECT * FROM STORE WHERE STOCA_NO = ?";
@@ -89,21 +89,22 @@ public class StrJDBCDAO implements StrDAO_interface {
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USER, PASSWORD);
 			state = con.prepareStatement(UPDATE);
+		
+			state.setString(1, strVO.getStr_cou());
+			state.setString(2, strVO.getStr_city());
+			state.setString(3, strVO.getStr_addr());
+			state.setString(4, strVO.getStr_tel());
+			state.setString(5, strVO.getStr_atn());
+			state.setInt(6, strVO.getStr_pre());
+			state.setString(7, strVO.getStr_ship());
+			state.setString(8, strVO.getStr_ma());
+			state.setDouble(9, strVO.getStr_long());
+			state.setDouble(10, strVO.getStr_lat());
+			state.setBytes(11, strVO.getStr_img());
+			state.setString(12, strVO.getStr_note());
+			state.setString(13, strVO.getStr_no());
 			
-			state.setString(1, strVO.getStr_name());
-			state.setString(2, strVO.getStr_cou());
-			state.setString(3, strVO.getStr_city());
-			state.setString(4, strVO.getStr_addr());
-			state.setString(5, strVO.getStr_tel());
-			state.setString(6, strVO.getStr_atn());
-			state.setInt(7, strVO.getStr_pre());
-			state.setString(8, strVO.getStr_ship());
-			state.setString(9, strVO.getStr_ma());
-			state.setDouble(10, strVO.getStr_long());
-			state.setDouble(11, strVO.getStr_lat());
-			state.setString(12, strVO.getStr_no());
-			
-			state.execute();
+			state.executeUpdate();
 			
 		} catch (ClassNotFoundException ce) {
 			throw new RuntimeException("Couldn't load database driver. " + ce.getMessage());
@@ -472,33 +473,36 @@ public class StrJDBCDAO implements StrDAO_interface {
 	}
 
 	@Override
-	public void updateInfo_Img(StrVO strVO) {
+	public String findByStrAcc(String str_acc) {
+		
+	
 		Connection con = null;
 		PreparedStatement state = null;
+		ResultSet rs = null;
+		String str_no = null;
 		
 		try {
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USER, PASSWORD);
-			state = con.prepareStatement(UPDATE_INFO_IMG);
+			state = con.prepareStatement(GET_STR_NO);
+			state.setString(1, str_acc);
+			rs = state.executeQuery();
 			
-			state.setBytes(1, strVO.getStr_img());
-			state.setString(2, strVO.getStr_no());
-			
-			state.execute();
-			
-		} catch (ClassNotFoundException ce) {
-			throw new RuntimeException("Couldn't load database driver. " + ce.getMessage());
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} finally {
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace(System.err);
-				}
+			while(rs.next()) {
+				str_no = rs.getString("STR_NO");
 			}
-				
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		return str_no;
 	}
+	
+
 }
+

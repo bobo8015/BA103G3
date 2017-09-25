@@ -23,7 +23,7 @@
 // 	List<StrVO> list2 = strSvc.getAll();
 //     pageContext.setAttribute("list2",list2);     
 %>	
-	<jsp:useBean id="storeSvc" scope="page" class="com.store.model.strService" />
+	<jsp:useBean id="storeSvc" scope="page" class="com.store.model.StrService" />
 	
 	
 	

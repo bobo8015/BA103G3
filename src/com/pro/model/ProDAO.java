@@ -32,10 +32,14 @@ public class ProDAO implements ProDAO_interface{
 		"INSERT INTO PROMOTION (PRO_NO,PRO_STR,PRO_END,STR_NO,PRO_CAT,PRO_DIS,DCLA_NO1,DCLA_NO2) VALUES('PRO_'||LPAD(TO_CHAR(PRO_SQ.NEXTVAL),4,'0'), ?, ?, ?, ?, ?, ?,?)";	
 	private static final String GET_ALL_STMT = 
 		"SELECT PRO_NO,PRO_STR,PRO_END,STR_NO,PRO_CAT,PRO_MON,PRO_DIS,DCLA_NO1,DCLA_NO2 FROM PROMOTION  order by PRO_NO";
-	private static final String GET_ONE_STR = 
-		"SELECT PRO_NO,PRO_STR,PRO_END,STR_NO,PRO_CAT,PRO_MON,PRO_DIS,DCLA_NO1,DCLA_NO2 FROM PROMOTION where STR_NO = ? and PRO_STR >= SYSDATE";
+	private static final String GET_ONE_STR_NOW = 
+		"SELECT PRO_NO,PRO_STR,PRO_END,STR_NO,PRO_CAT,PRO_MON,PRO_DIS,DCLA_NO1,DCLA_NO2 FROM PROMOTION where STR_NO = ? and PRO_STR <= SYSDATE and PRO_END >= SYSDATE";
 	private static final String UPDATE = 
 		"UPDATE PROMOTION set PRO_END= ?  where PRO_NO = ?";
+	
+	private static final String GET_ONE_STR_ALL =
+	"SELECT PRO_NO,PRO_STR,PRO_END,STR_NO,PRO_CAT,PRO_MON,PRO_DIS,DCLA_NO1,DCLA_NO2 FROM PROMOTION where STR_NO = ?  and PRO_END >= SYSDATE order by PRO_STR";
+	
 	@Override
 	public void insert1(ProVO proVO) {
 		Connection con= null;
@@ -246,7 +250,7 @@ public class ProDAO implements ProDAO_interface{
 		
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ONE_STR);
+			pstmt = con.prepareStatement(GET_ONE_STR_ALL);
 			pstmt.setString(1, str_no);
 			rs = pstmt.executeQuery();
 			

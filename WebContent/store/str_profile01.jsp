@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ page import="java.util.*"%>
 <%@ page import="com.store.model.*"%>
+<%@ page import="com.storecategory.model.*"%>
 
 <%
 	String str_no = (String) session.getAttribute("str_no");	
@@ -12,8 +13,12 @@
 		str_no = (String) session.getAttribute("str_no");		
 	}
 %>
+<jsp:useBean id="storeSvc" scope="page" class="com.store.model.StrService" />
+<jsp:useBean id="StocaSvc" scope="page" class="com.storecategory.model.StocaService" />
 
-<jsp:useBean id="storeSvc" scope="page" class="com.store.model.strService" />
+
+<% StrVO storVO = storeSvc.getOneStr(str_no); %>
+<% StocaVO StocaVO = StocaSvc.getOneStoca(storVO.getStoca_no()); %>
 
 <html lang="">
 	<head>
@@ -27,9 +32,9 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/store/css/str_profile.css">
-		
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/store/css/style.css">
 	</head>
-	<body>
+	<body onload="getShip();">
 <!-- header======================================= -->	
 		<div class="page-header center-header">
 		  <span>食在方便<small>店家中心</small></span>
@@ -45,7 +50,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="str_profile01.html">百花窯</a>
+					<a class="navbar-brand" href="str_profile01.html"><%= storVO.getStr_name()%></a>
 				</div>
 				
 		<!-- 手機隱藏選單區=======================================-->
@@ -63,7 +68,7 @@
 			<!-- 右選單 =======================================-->
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">百花窯 您好<b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= storVO.getStr_name()%> 您好<b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="str_profile01.html">店家資料</a></li>
 								<li><a href="str_order.html">訂單查詢</a></li>
@@ -123,77 +128,77 @@
 <!-- 右邊開始 =======================================-->			
 		<div class="col-xs-12 col-sm-9 between">
 			<div id="css_table">
-				<c:forEach var="storVO" items="${storeSvc.getOneStr(str_no)}" >
-				</c:forEach> 
+						
 				<div class="css_tr">
 					<div class="input-group-addon">店家頭像</div>
 					<div class="css_td">
-					<img class="strimg" src="images/logo.png">		
+					<img class="strimg" src="http://localhost:8081<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=<%= str_no%> ">		
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">店家簡介</div>
 					<div class="css_td">
-						未說明
+						<%= storVO.getStr_note()%>
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">店家名稱</div>
 					<div class="css_td">
-					百花窯
+					<%= storVO.getStr_name() %>
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">店家類別</div>
 					<div class="css_td">
-					中式料理
+						<%= StocaVO.getStoca_name() %>
+					 	
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">店家地址</div>
 					<div class="css_td">
-						新竹市
-						北區
-						北大路186號
+						<%= storVO.getStr_cou()%>
+						<%= storVO.getStr_city()%>
+						<%= storVO.getStr_addr()%>
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">聯絡人</div>
 					<div class="css_td">
-						李瑞希
+						<%= storVO.getStr_atn()%>
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">聯絡電話</div>
 					<div class="css_td">
-						03-5247851
+						<%= storVO.getStr_tel()%>
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">聯絡信箱</div>
 					<div class="css_td">
-						raylee0815@gmail.com
+						<%= storVO.getStr_ma()%>
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">平均備餐時間</div>
 					<div class="css_td">
-						30  分鐘
+						<%= storVO.getStr_pre()%>
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">提供外送</div>
-					<div class="css_td">
-						<input type="radio" name="STR_SHIP" id="true" value="TRUE" checked disabled> Yes
+					<div class="css_td" id="ship">						 
+						 	 
 					</div>
 					
 				</div>
@@ -205,123 +210,20 @@
 <!-- 右邊結束 =======================================-->
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-<!-- footer -->
-<!-- 		<footer >
-	      <div class="container">
-	        <div class="col-sm-2">
-	          <img src="../images/logo.jpg" class="img-responsive">
-	        </div>
-	        <div class="col-sm-2">
-	          <h5>公司</h5>
-	          <ul class="list-unstyled">
-	            <li><a href="#">文件資料</a></li>
-	            <li><a href="#">Packt出版社</a></li>
-	            <li><a href="#">關於我們</a></li>
-	            <li><a href="#">聯絡資訊</a></li>
-	          </ul>
-	        </div>
-	        <div class="col-sm-2">
-	          <h5>社群</h5>
-	          <ul class="list-unstyled">
-	            <li><a href="#">Facebook</a></li>
-	            <li><a href="#">Twitter</a></li>
-	            <li><a href="#">部落格</a></li>
-	          </ul>
-	        </div>
-	        <div class="col-sm-2">
-	          <h5>客戶支援</h5>
-	          <ul class="list-unstyled">
-	            <li><a href="#">聯絡資訊</a></li>
-	            <li><a href="#">隱私政策</a></li>
-	            <li><a href="#">條款與細則</a></li>
-	            <li><a href="#">服務台</a></li>
-	          </ul>
-	        </div>
-	        <div class="col-sm-4">
-	          <address>
-	            <strong>食在方便有限公司</strong>
-	            地址第 1 行<br>
-				地址第 2 行<br>
-	            <abbr title="Phone">TEL：</abbr> (02) 1234-5678
-	          </address>
-	        </div>
-	      </div>
-	    </footer>
-
- -->
-
-
-		
-		
-		
+				
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="/js/plugins/piexif.js"></script>
-		<script src="/js/fileinput.js"></script>
 		<script>
-		function $id(id) {
-			return document.getElementById(id);
-		}
-		function Output(msg) {
-			var m = $id("messages");
-			m.innerHTML = msg + m.innerHTML;
-		}
-		if (window.File && window.FileList && window.FileReader) {
-			Init();
-		}
-		function Init() {
-
-			var fileselect = $id("fileselect"),
-				filedrag = $id("filedrag"),
-				submitbutton = $id("submitbutton");
-
-			// file select
-			fileselect.addEventListener("change", FileSelectHandler, false);
-
-			// is XHR2 available?
-			var xhr = new XMLHttpRequest();
-			if (xhr.upload) {
 			
-				// file drop
-				filedrag.addEventListener("dragover", FileDragHover, false);
-				filedrag.addEventListener("dragleave", FileDragHover, false);
-				filedrag.addEventListener("drop", FileSelectHandler, false);
-				filedrag.style.display = "block";
-				
-				// remove submit button
-				submitbutton.style.display = "none";
+		function getShip(){
+			var ship = "<%=storVO.getStr_ship()%>";
+			if(ship.match("TRUE")){
+				$("#ship").text("yes");
+			} else {
+				$("#ship").text("no");
 			}
-
-		}
-
-
+		} 
+		
 
 
 		</script>

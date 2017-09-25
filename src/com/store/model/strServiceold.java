@@ -2,45 +2,41 @@ package com.store.model;
 
 import java.util.List;
 
-public class StrService {
+public class strServiceold {
 	
-public StrDAO_interface dao;
+	private StrDAO_interface dao;
 	
-	public StrService() {
+	public strServiceold() {
 		dao = new StrDAO();
 	}
 	
-	
-	public StrVO addStr(String str_name, String stoca_no, String str_cou, String str_city, String str_addr, 
-						String str_atn, String str_tel, String str_ma, String str_acc, String str_pas, 
-						Integer str_pre, String str_ship, Double str_lat, Double str_long) {
+	public StrVO addStr(String str_name, String str_cou, String str_city, String str_addr, String str_tel, 
+			String str_atn, Integer str_pre, String stoca_no, String str_acc, String str_pas, String str_ma, Double str_long, Double str_lat) {
 		
 		StrVO strVO = new StrVO();
 		strVO.setStr_name(str_name);
-		strVO.setStoca_no(stoca_no);
 		strVO.setStr_cou(str_cou);
 		strVO.setStr_city(str_city);
 		strVO.setStr_addr(str_addr);
-		strVO.setStr_atn(str_atn);
 		strVO.setStr_tel(str_tel);
-		strVO.setStr_ma(str_ma);
+		strVO.setStr_atn(str_atn);
+		strVO.setStr_pre(str_pre);
+		strVO.setStoca_no(stoca_no);
 		strVO.setStr_acc(str_acc);
 		strVO.setStr_pas(str_pas);
-		strVO.setStr_pre(str_pre);
-		strVO.setStr_ship(str_ship);
-		strVO.setStr_lat(str_lat);
+		strVO.setStr_ma(str_ma);
 		strVO.setStr_long(str_long);
+		strVO.setStr_lat(str_lat);
 		dao.insert(strVO);
 		return strVO;
 	}
 	
-	public StrVO updateStr(String str_no, String str_note, String str_cou, 
-			String str_city, String str_addr, String str_tel, String str_atn, Integer str_pre, 
-			String str_ship, String str_ma, Double str_long, Double str_lat) {
+	public StrVO updateStr(String str_no, String str_name, String str_cou, String str_city, String str_addr, String str_tel, 
+			String str_atn, Integer str_pre, String str_ship, String str_ma, Double str_long, Double str_lat) {
 		
 		StrVO strVO = new StrVO();
 		strVO.setStr_no(str_no);
-		strVO.setStr_note(str_note);
+		strVO.setStr_name(str_name);
 		strVO.setStr_cou(str_cou);
 		strVO.setStr_city(str_city);
 		strVO.setStr_addr(str_addr);
@@ -76,11 +72,6 @@ public StrDAO_interface dao;
 		return dao.findByPrimaryKey(str_no);
 	}
 	
-	public String getOneStrNO(String str_acc) {
-		return dao.findByStrAcc(str_acc);
-		
-	}
-	
 	public List<StrVO> getAreaStr(String area) {
 		return dao.findByArea(area);
 	}
@@ -92,5 +83,6 @@ public StrDAO_interface dao;
 	public List<StrVO> getAll() {
 		return dao.getAll();
 	}
-
+		
+	
 }
