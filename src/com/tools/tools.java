@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Reader;
 import java.sql.Blob;
 import java.sql.Clob;
@@ -16,6 +17,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
+import javax.servlet.http.Part;
 
 import oracle.sql.BLOB;
 import oracle.sql.CLOB;
@@ -88,6 +91,25 @@ public class tools {
 		fis.close();
 
 		return baos.toByteArray();
+	}
+	
+	public static byte[] getPictureByteArraypart (Part part) throws IOException {
+		
+		InputStream in =part.getInputStream();
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		
+
+		byte[] buffer = new byte[1024];
+        int length = -1;
+        while ((length = in.read(buffer)) != -1) {
+            out.write(buffer, 0, length);
+        }
+        in.close();
+        out.close();
+        byte[] part2 = out.toByteArray();
+
+		return part2;
+		
 	}
 
 	//BLOB轉byte

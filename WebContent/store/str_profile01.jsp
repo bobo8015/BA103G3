@@ -16,7 +16,6 @@
 <jsp:useBean id="storeSvc" scope="page" class="com.store.model.StrService" />
 <jsp:useBean id="StocaSvc" scope="page" class="com.storecategory.model.StocaService" />
 
-
 <% StrVO storVO = storeSvc.getOneStr(str_no); %>
 <% StocaVO StocaVO = StocaSvc.getOneStoca(storVO.getStoca_no()); %>
 
@@ -218,9 +217,9 @@
 		function getShip(){
 			var ship = "<%=storVO.getStr_ship()%>";
 			if(ship.match("TRUE")){
-				$("#ship").text("yes");
+				$("#ship").text("YES");
 			} else {
-				$("#ship").text("no");
+				$("#ship").text("NO");
 			}
 		} 
 		

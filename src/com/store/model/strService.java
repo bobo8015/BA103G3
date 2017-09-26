@@ -64,6 +64,14 @@ public StrDAO_interface dao;
 		return strVO;
 	}
 	
+	public StrVO updateImg(byte [] str_img, String str_no) {
+		StrVO strVO = new StrVO();
+		strVO.setStr_no(str_no);
+		strVO.setStr_img(str_img);	
+		dao.updateimg(strVO);
+		return strVO;
+	}
+	
 	public void updatePas(String str_no, String str_pas) {
 		dao.updatePas(str_no, str_pas);
 	}

@@ -502,6 +502,12 @@ public class StrJDBCDAO implements StrDAO_interface {
 		
 		return str_no;
 	}
+
+	@Override
+	public void updateimg(StrVO strVO) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

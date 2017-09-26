@@ -36,6 +36,7 @@ public class StrDAO implements StrDAO_interface {
 	private static final String UPDATE_INFO = "UPDATE STORE SET STR_IMG = ?, STR_NOTE = ? WHERE STR_NO = ?";
 	private static final String UPDATE_PAS = "UPDATE STORE SET STR_PAS = ? WHERE STR_NO = ?";
 	private static final String UPDATE_STAT = "UPDATE STORE SET STR_STAT = ? WHERE STR_NO = ?";
+	private static final String UPDATE_IMG = "UPDATE STORE SET STR_IMG = ? WHERE STR_NO = ?";
 	private static final String GET_ONE = "SELECT * FROM STORE WHERE STR_NO = ?";
 	private static final String GET_STR_NO = "SELECT STR_NO FROM STORE WHERE STR_ACC = ?";
 	private static final String GET_ALL = "SELECT * FROM STORE ORDER BY STR_NO";
@@ -457,6 +458,34 @@ public class StrDAO implements StrDAO_interface {
 			}
 		}
 		return stocaList;
+	}
+
+	@Override
+	public void updateimg(StrVO strVO) {
+		Connection con = null;
+		PreparedStatement state = null;
+		
+		try {
+			con = ds.getConnection();
+			state = con.prepareStatement(UPDATE_IMG);
+			
+			state.setBytes(1, strVO.getStr_img());
+			state.setString(2, strVO.getStr_no());
+			
+			state.execute();
+			
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+				
+		}
 	}
 
 

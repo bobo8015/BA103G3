@@ -1,22 +1,31 @@
 package com.store.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import com.store.model.StrVO;
+import com.storecategory.model.ShareTool;
+import com.fav.model.FavService;
 import com.store.model.StrService;
-
+import com.tools.*;
+@MultipartConfig
 public class StrServlet extends HttpServlet {
-	
+	 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		doPost(request, response);
@@ -24,11 +33,14 @@ public class StrServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		
+		System.out.println("555655");
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
 		HttpSession session = request.getSession();
-	
+		System.out.println("5556655");
+		System.out.println(action);
+		
+		
 //		 ------------------------店家註冊開始------------------------
 		
 		if ("getRegisterSt".equals(action)) {
@@ -317,11 +329,10 @@ public class StrServlet extends HttpServlet {
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			request.setAttribute("errorMsgs", errorMsgs);
-			
+			System.out.println("555555");
 			try {
-//				String str_no = session.getAttribute("str_no").toString();
-				String str_no = request.getParameter("str_no");
-				System.out.println(str_no);
+				System.out.println("5999955");
+				String str_no = (String) session.getAttribute("str_no");
 				String str_note = request.getParameter("str_note");
 				String str_cou = request.getParameter("str_cou");
 				String str_city = request.getParameter("str_city");
@@ -334,8 +345,14 @@ public class StrServlet extends HttpServlet {
 				Double str_lat = new Double(request.getParameter("str_lat"));
 				Double str_long = new Double(request.getParameter("str_long"));
 				
+				System.out.println(str_no);
+				System.out.println(str_note );
+				System.out.println(str_cou);
+				System.out.println(str_city);
 				System.out.println(str_addr);
-				System.out.println(str_note);
+				System.out.println(str_atn);
+				System.out.println(str_tel);
+				System.out.println(str_ma);
 				
 				StrVO strVO = new StrVO();
 				strVO.setStr_no(str_no);
@@ -353,7 +370,7 @@ public class StrServlet extends HttpServlet {
 				
 				if(!errorMsgs.isEmpty()) {
 					request.setAttribute("strVO", strVO);
-					RequestDispatcher failureView = request.getRequestDispatcher("/easyfood/front-end/class/store/str_profile02.jsp");
+					RequestDispatcher failureView = request.getRequestDispatcher("/store/str_profile02.jsp");
 					failureView.forward(request, response);
 					return;	
 				}
@@ -365,13 +382,13 @@ public class StrServlet extends HttpServlet {
 				StrService strSvc = new StrService();
 				strSvc.updateStr(str_no, str_note, str_cou, str_city, str_addr, str_tel, str_atn, str_pre, str_ship, str_ma, str_long, str_lat);
 				System.out.println("update success");
-				String url = "/easyfood/front-end/class/store/str_profile01.jsp";
+				String url = "/store/str_profile01.jsp";
 				RequestDispatcher successView = request.getRequestDispatcher(url);
 				successView.forward(request, response);
-				
+				 
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = request.getRequestDispatcher("/easyfood/front-end/class/store/str_profile02.jsp");
+				RequestDispatcher failureView = request.getRequestDispatcher("/store/str_profile02.jsp");
 				failureView.forward(request, response);
 			}
 			
@@ -432,6 +449,7 @@ public class StrServlet extends HttpServlet {
 				
 				session.invalidate();
 				
+				
 				String url = "/easyfood/front-end/class/store/str_login.jsp";
 				RequestDispatcher successView = request.getRequestDispatcher(url);
 				successView.forward(request, response);
@@ -443,7 +461,96 @@ public class StrServlet extends HttpServlet {
 			}
 				
 		}
-//		 ------------------------店家新增菜單開始------------------------
+		if("Up_For_Image".equals(action)){
+	
+			List<String> errorMsgs = new LinkedList<String>();
+			request.setAttribute("errorMsgs", errorMsgs);
+			
+			try{
+				String str_no = (String) session.getAttribute("str_no");
+				Part str_img=request.getPart("str_img");				
+				byte[] str_img_byte = tools.getPictureByteArraypart(str_img);
+				
+				StrVO strVO = new StrVO();
+				
+				strVO.setStr_img(str_img_byte);
+				strVO.setStr_no(str_no);
+				
+				StrService strSvc = new StrService();
+				
+				strSvc.updateImg(str_img_byte, str_no);
+				
+			
+				
+				String url = "/store/str_profile01.jsp";
+				RequestDispatcher successView = request.getRequestDispatcher(url);
+				successView.forward(request, response);
+				
+			}catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = request.getRequestDispatcher("/store/str_profile02.jsp");
+				failureView.forward(request, response);
+			}
+			
+			
+		}
+		
+		if("str_up_pas".equals(action)){
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			request.setAttribute("errorMsgs", errorMsgs);
+			
+			try{
+				String str_no =(String) session.getAttribute("str_no");
+				String str_pas =request.getParameter("str_pas").trim();				
+				String str_pas_new =request.getParameter("str_pas_new").trim();
+				String str_pas_new2 =request.getParameter("str_pas_new2").trim();
+				
+				System.out.println(str_no );
+				System.out.println(str_pas);
+				System.out.println(str_pas_new);
+				System.out.println(str_pas_new2);
+				
+				StrService strSvc = new StrService();
+				StrVO strVO = strSvc.getOneStr(str_no);
+				
+				String str_pas_db =strVO.getStr_pas();
+				
+				
+				if(!str_pas_db.equals(str_pas)) {
+					errorMsgs.add("舊密碼錯誤");
+				}
+				if(str_pas_db.equals(str_pas_new)) {
+					errorMsgs.add("密碼與舊密碼相同");
+				}
+				
+				if(!str_pas_new.equals(str_pas_new2)) {
+					errorMsgs.add("新密碼與再輸入密碼不同");
+				}
+												
+				
+				if (!errorMsgs.isEmpty()) {
+					request.setAttribute("errorMsgs", errorMsgs);
+					RequestDispatcher failureView = request.getRequestDispatcher("/store/str_profile03.jsp");		
+					failureView.forward(request, response);
+					return;
+				}
+				
+				
+				strSvc.updatePas(str_no, str_pas_new);
+				
+				String url = "/store/str_profile01.jsp";
+				RequestDispatcher successView = request.getRequestDispatcher(url);
+				successView.forward(request, response);
+				
+			}catch (Exception e) {
+				errorMsgs.add("更新失敗" + e.getMessage());
+				RequestDispatcher failureView = request.getRequestDispatcher("/store/str_profile02.jsp");
+				failureView.forward(request, response);
+			}
+			
+			
+		}
 		
 		
 		
@@ -455,6 +562,7 @@ public class StrServlet extends HttpServlet {
 		
 		
 	}
+
 	
 	
 	

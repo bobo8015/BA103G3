@@ -123,13 +123,13 @@
 <!-- 右邊開始 =======================================-->			
 		<div class="col-xs-12 col-sm-9 between">
 			
-		<form action="" method="">
+			
 			<div id="css_table">
-
+				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/store/storeupdata.do" >
 				<div class="css_tr">
 					<div class="input-group-addon">原本密碼</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STR_NAME" value="">
+						<input class="input" type="password" name="str_pas" value="">
 					</div>
 				</div>
 
@@ -137,147 +137,44 @@
 				<div class="css_tr">
 					<div class="input-group-addon">更改密碼</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STR_NAME" value="">
+						<input class="input" type="password" name="str_pas_new" value="">
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">再輸入一次</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STOCA_NAME" value="">
+						<input class="input" type="password" name="str_pas_new2" value="">
 					</div>
 				</div>
 
-				<div class="update">
-					<button class="btn btn-update">修改</button>
-				</div>
-
+				
+					
+					<input type="hidden" name="action" value="str_up_pas">
+					<input class="btn btn-primary" type="submit" value="修改">	
+					</form>
+				
+				<c:if test="${not empty errorMsgs}">
+					  <font color='red'>
+					  <ul>
+					  <c:forEach var="message" items="${errorMsgs}">
+					    <li>${message}</li>
+					  </c:forEach>
+					  </ul>
+					  </font>
+				</c:if>
 			</div>
-		</form>
+		
 
 		</div>
 <!-- 右邊結束 =======================================-->
 	</div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-<!-- footer -->
-<!-- 		<footer >
-	      <div class="container">
-	        <div class="col-sm-2">
-	          <img src="../images/logo.jpg" class="img-responsive">
-	        </div>
-	        <div class="col-sm-2">
-	          <h5>公司</h5>
-	          <ul class="list-unstyled">
-	            <li><a href="#">文件資料</a></li>
-	            <li><a href="#">Packt出版社</a></li>
-	            <li><a href="#">關於我們</a></li>
-	            <li><a href="#">聯絡資訊</a></li>
-	          </ul>
-	        </div>
-	        <div class="col-sm-2">
-	          <h5>社群</h5>
-	          <ul class="list-unstyled">
-	            <li><a href="#">Facebook</a></li>
-	            <li><a href="#">Twitter</a></li>
-	            <li><a href="#">部落格</a></li>
-	          </ul>
-	        </div>
-	        <div class="col-sm-2">
-	          <h5>客戶支援</h5>
-	          <ul class="list-unstyled">
-	            <li><a href="#">聯絡資訊</a></li>
-	            <li><a href="#">隱私政策</a></li>
-	            <li><a href="#">條款與細則</a></li>
-	            <li><a href="#">服務台</a></li>
-	          </ul>
-	        </div>
-	        <div class="col-sm-4">
-	          <address>
-	            <strong>食在方便有限公司</strong>
-	            地址第 1 行<br>
-				地址第 2 行<br>
-	            <abbr title="Phone">TEL：</abbr> (02) 1234-5678
-	          </address>
-	        </div>
-	      </div>
-	    </footer>
-
- -->
-
-
-		
-		
+	
 		
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="/js/plugins/piexif.js"></script>
-		<script src="/js/fileinput.js"></script>
-		<script>
-		function $id(id) {
-			return document.getElementById(id);
-		}
-		function Output(msg) {
-			var m = $id("messages");
-			m.innerHTML = msg + m.innerHTML;
-		}
-		if (window.File && window.FileList && window.FileReader) {
-			Init();
-		}
-		function Init() {
 
-			var fileselect = $id("fileselect"),
-				filedrag = $id("filedrag"),
-				submitbutton = $id("submitbutton");
-
-			// file select
-			fileselect.addEventListener("change", FileSelectHandler, false);
-
-			// is XHR2 available?
-			var xhr = new XMLHttpRequest();
-			if (xhr.upload) {
-			
-				// file drop
-				filedrag.addEventListener("dragover", FileDragHover, false);
-				filedrag.addEventListener("dragleave", FileDragHover, false);
-				filedrag.addEventListener("drop", FileSelectHandler, false);
-				filedrag.style.display = "block";
-				
-				// remove submit button
-				submitbutton.style.display = "none";
-			}
-
-		}
-
-
-
-
-		</script>
 	</body>
 </html>

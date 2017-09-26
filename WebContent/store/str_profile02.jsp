@@ -14,9 +14,9 @@
 	}
 %>
 <jsp:useBean id="storeSvc" scope="page" class="com.store.model.StrService" />
-<jsp:useBean id="dishclassSvc" scope="page" class="com.dishclass.model.DclaService" />
- <% StrVO storVO = storeSvc.getOneStr(str_no); %>
-
+<jsp:useBean id="StocaSvc" scope="page" class="com.storecategory.model.StocaService" />
+<% StrVO storVO = storeSvc.getOneStr(str_no); %>
+<% StocaVO StocaVO = StocaSvc.getOneStoca(storVO.getStoca_no()); %>
 <html lang="">
 	<head>
 		<meta charset="utf-8">
@@ -124,71 +124,81 @@
 <!-- 右邊開始 =======================================-->			
 		<div class="col-xs-12 col-sm-9">
 		
-		
-			
-			<table>
-				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/store/storeupdata.do" >
-				<div class="css_tr">		
-					<div class="input-group-addon">店家頭像</div>
-					<div class="css_td"><img class="strimg" src="http://localhost:8081<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=<%= str_no%> "></div>
-				</div>
-				</FORM>
+			  
+      			
+
+
+
+			<table>		
+					
+				<form  METHOD="post" ACTION="<%=request.getContextPath()%>/store/storeupdata.do" enctype="multipart/form-data" >
+					<div class="css_tr">
+							
+						<div class="input-group-addon">店家頭像  </div>
+						<div class="css_td"><img id="image" class="strimg" src="http://localhost:8081<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=<%= str_no%> ">
+						<input type="file" id="files" name="str_img" value=""/>
+						
+						<input type="hidden" name="action" value="Up_For_Image">
+						<input class="btn btn-primary" type="submit" value="更新相片" />		 
+						</div>
+					</div>
+				</form>
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/store/storeupdata.do" >
 				 
 				<div class="css_tr">
 					<div class="input-group-addon">店家簡介</div>
-					<div class="css_td"><input class="input" type="text" name="STR_NAME" value=<%= storVO.getStr_note()%>></div>
+					<div class="css_td"><input class="input" type="text" name="str_note" value=<%= storVO.getStr_note()%>></div>
 				</div>
 
 
 				<div class="css_tr">
 					<div class="input-group-addon">店家名稱</div>
-					<div class="css_td"><input class="input" type="text" name="STR_NAME" value=<%= storVO.getStr_name()%> disabled></div>
+					<div class="css_td"><input class="input" type="text" name="str_name" value=<%= storVO.getStr_name()%> disabled></div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">店家類別</div>
-					<div class="css_td"><input class="input" type="text" name="STOCA_NAME" value=<%= storVO.getStoca_no()%> disabled></div>
+					<div class="css_td"><input class="input" type="text" name="stoca_name" value=<%= StocaVO.getStoca_name() %> disabled></div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">店家地址</div>
-					<div class="css_td">
-						<input class="input" type="text" name="STR_COUN" value=<%= storVO.getStr_cou()%>>
+					<div class="css_td">                                     
+						<input class="input" type="text" name="str_cou" id="county" value=<%= storVO.getStr_cou()%>>
 					
 						
-						<input class="input" type="text" name="STR_CITY" value=<%= storVO.getStr_city()%>>
+						<input class="input" type="text" name="str_city" id="city" value=<%= storVO.getStr_city()%>>
 					
 					
-						<input class="input" type="text" name="STR_ADDR" value=<%= storVO.getStr_addr()%>>
+						<input class="input" type="text" name="str_addr" id="addr" value=<%= storVO.getStr_addr()%>>
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">聯絡人</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STR_ATN" value=<%= storVO.getStr_atn()%>>
+						<input class="input" type="text" name="str_atn" value=<%= storVO.getStr_atn()%>>
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">聯絡電話</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STR_TEL" value=<%= storVO.getStr_tel()%>>
+						<input class="input" type="text" name="str_tel" value=<%= storVO.getStr_tel()%>>
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">聯絡信箱</div>
 					<div class="css_td">
-						<input class="input" type="text" name="STR_MAL" value=<%= storVO.getStr_ma()%>>
+						<input class="input" type="text" name="str_ma" value=<%= storVO.getStr_ma()%>>
 					</div>
 				</div>
 
 				<div class="css_tr">
 					<div class="input-group-addon">平均備餐時間</div>
 					<div class="css_td">
-						<select name="month" class="select-sm" id="time">
+						<select name="str_pre" class="select-sm" id="time">
 							<option value=“15”>15</option>
 							<option value="30">30</option>
 							<option value="60">60</option>
@@ -201,19 +211,23 @@
 				<div class="css_tr">
 					<div class="input-group-addon">提供外送</div>
 					<div class="css_td">
-						<input type="radio" name="STR_SHIP" id="true" value="TRUE" <%= "TRUE".equals(storVO.getStr_ship()) ? "checked" : " "%> >
+						<input type="radio" name="str_ship" id="true" value="TRUE" <%= "TRUE".equals(storVO.getStr_ship()) ? "checked" : " "%> >
 						<label for="true">Yes</label>&nbsp;
-						<input type="radio" name="STR_SHIP" id="false" value="FALSE" <%= "FALSE".equals(storVO.getStr_ship()) ? "checked" : " "%> >
+						<input type="radio" name="str_ship" id="false" value="FALSE" <%= "FALSE".equals(storVO.getStr_ship()) ? "checked" : " "%> >
 						<label for="false">No</label>
 					</div>
 				</div>
-
+				<div>
+					<input type="hidden" name="str_lat"  id="lat">
+					<input type="hidden" name="str_long"  id="lng">
+				</div>	
 				<div class="css_tr">
 					<div class="css_td">
-						<input class="btn btn-update" type="submit" value="修改">
-	       				<input type="hidden" name="action" value="getOne_For_Display">
+						<input class="btn btn-primary" type="submit" value="修改">
+	       				<input type="hidden" name="action" value="str_update">
        				</div>
 				</div>
+					
        				
 				</form>
 		
@@ -233,7 +247,8 @@
 		
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+		<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyByu95g9OE5DY3z-4DjCnif5tSTtDzgkX4"></script>
+		<script src="<%=request.getContextPath()%>/store/js/transLatLng.js"></script>
 		<script>
 		
 		function gettime(){
@@ -257,11 +272,19 @@
  		}
 		
 		
+		document.getElementById("files").onchange = function () {
+		    var reader = new FileReader();
+
+		    reader.onload = function (e) {
+		        // get loaded data and render thumbnail.
+		        document.getElementById("image").src = e.target.result;
+		    };
+
+		    // read the image file as a data URL.
+		    reader.readAsDataURL(this.files[0]);
+		};
 		
-
-
-
-
 		</script>
+		
 	</body>
 </html>
