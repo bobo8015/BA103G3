@@ -50,7 +50,11 @@ public class AdvService {
 	public List<AdvVO> getAll() {
 		return dao.getAll();
 	}
-
+	
+	public List<AdvVO> getAllStrAdv(String str_no){
+		return dao.getAllStrAdv(str_no);
+		
+	}
 	
 
 }

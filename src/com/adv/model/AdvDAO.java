@@ -35,6 +35,8 @@ public class AdvDAO implements AdvDAO_interface{
 			"DELETE FROM ADVERTISING where ADV_NO = ?";
 		private static final String UPDATE = 
 			"UPDATE ADVERTISING set ADV_STA=? where ADV_NO = ?";
+		private static final String GET_ALL_STR_ADV = 
+			"SELECT ADV_STR,ADV_END,ADV_TXT,ADV_STA FROM ADVERTISING  where STR_NO = ?";
 	
 		
 	
@@ -195,6 +197,63 @@ public class AdvDAO implements AdvDAO_interface{
 			advVO = new AdvVO();
 			advVO.setAdv_no(rs.getString("adv_no"));
 			advVO.setStr_no(rs.getString("str_no"));
+			advVO.setAdv_end(rs.getDate("adv_end"));
+			advVO.setAdv_str(rs.getDate("adv_str"));
+			advVO.setAdv_txt(rs.getBytes("adv_txt"));
+			advVO.setAdv_sta(rs.getString("adv_sta"));
+			list.add(advVO);
+		}	
+			
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		if (rs != null) {
+			try {
+				rs.close();
+			} catch (SQLException se) {
+				se.printStackTrace(System.err);
+			}
+		}
+		if (pstmt != null) {
+			try {
+				pstmt.close();
+			} catch (SQLException se) {
+				se.printStackTrace(System.err);
+			}
+		}
+		if (con != null) {
+			try {
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace(System.err);
+			}
+		}
+	}
+			
+			return list;
+		}
+
+		@Override
+		public List<AdvVO> getAllStrAdv(String str_no) {
+			List<AdvVO> list =  new ArrayList<AdvVO>();
+			AdvVO advVO = null;
+			
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+	try {		
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_STR_ADV);
+			pstmt.setString(1, str_no);
+	
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				
+			advVO = new AdvVO();
 			advVO.setAdv_end(rs.getDate("adv_end"));
 			advVO.setAdv_str(rs.getDate("adv_str"));
 			advVO.setAdv_txt(rs.getBytes("adv_txt"));

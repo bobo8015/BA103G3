@@ -163,7 +163,7 @@
                 		
                 			<c:if test="${favVO.str_no==strVO.str_no}"> 
                 			   <div>
-                      	     <img class="abc" src="http://localhost:8081<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=${strVO.str_no} ">
+                      	     <img class="abc" src="<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=${strVO.str_no} ">
                       			${strVO.str_name} 
                 			       <div style="float:right;">
   	                  	

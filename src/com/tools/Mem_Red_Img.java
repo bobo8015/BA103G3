@@ -22,8 +22,7 @@ public class Mem_Red_Img extends HttpServlet {
 		try {
 			Statement stmt = con.createStatement();
 			String str_no =req.getParameter("str_no");
-			ResultSet rs = stmt.executeQuery(
-				"SELECT STR_IMG FROM STORE WHERE STR_NO = '"+str_no+"' ");
+			ResultSet rs = stmt.executeQuery("SELECT STR_IMG FROM STORE WHERE STR_NO = '"+str_no+"' ");
 
 			if (rs.next()) {
 				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("STR_IMG"));

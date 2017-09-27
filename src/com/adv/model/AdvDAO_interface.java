@@ -9,4 +9,5 @@ public interface AdvDAO_interface {
 	public void delete(String adv_no);
 	public AdvVO findByPrimaryKey(String adv_no);
 	public List<AdvVO> getAll();
+	public List<AdvVO> getAllStrAdv(String str_no);
 }

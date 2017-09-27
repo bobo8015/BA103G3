@@ -20,6 +20,7 @@ import javax.servlet.http.Part;
 
 import com.store.model.StrVO;
 import com.storecategory.model.ShareTool;
+import com.adv.model.AdvVO;
 import com.fav.model.FavService;
 import com.store.model.StrService;
 import com.tools.*;
@@ -33,12 +34,11 @@ public class StrServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		System.out.println("555655");
+		System.out.println("有進入控制器");
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
 		HttpSession session = request.getSession();
-		System.out.println("5556655");
-		System.out.println(action);
+		System.out.println("action:"+action);
 		
 		
 //		 ------------------------店家註冊開始------------------------
@@ -551,8 +551,6 @@ public class StrServlet extends HttpServlet {
 			
 			
 		}
-		
-		
 		
 		
 		
