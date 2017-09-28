@@ -122,7 +122,7 @@
 
 
 <!-- 右邊開始 =======================================-->			
-		<div class="col-xs-12 col-sm-9" >
+		<div class="col-xs-12 col-sm-7" >
 			<div class="page-header order-page">廣告總覽</div>
 				<c:forEach var="advVO" items="${advSvc.getAllStrAdv(str_no)}">
 		  		<table class="table table-striped"> 
@@ -130,16 +130,13 @@
     				<thead>
     					<tr>
     						
-    						<th>開始日期:${advVO.adv_str}<br>
-    						結束日期:${advVO.adv_end}<button type="button" class="btn btn-info " float:right>修改</button>
-    						</th>
-    						
-    						<th><button type="button" class="btn btn-info ">修改</button></th>
+    						<th><div></div>開始日期:${advVO.adv_str}</div><div>結束日期:${advVO.adv_end}</div></th>
+    						  						
 						</tr>
     				</thead>
     		
     			<tr>
-				<th><img src="images/open.jpg"></th>
+				<th><img  width="600" height="400" src="<%=request.getContextPath()%>/tools/Adv_Red_Img?str_no=${str_no}&adv_no=${advVO.adv_no} "></th>
 				</tr>					
 				</table>
 				</c:forEach>  				
@@ -217,7 +214,7 @@
 					font-size: 15px;
 					text-align: right;
 					padding: 3px;
-					margin-top: 10px;
+					
             }             
 		</style>		
 	</body>

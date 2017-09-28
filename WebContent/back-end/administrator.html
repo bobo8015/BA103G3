@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<!--
+  Editorial by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>食在方便後端系統</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="back_css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <style type="text/css">
+      
+      
+       #main{background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position:right;
+        background-image: url(images/end/NewBcg.png);
+        background-color: #f9ebae;
+      }
+
+      #small {padding: 50px;}
+
+      #sidebar {background-image: url(images/end/000.png); box-shadow:2px 2px 2px 1px #cccccc;background-attachment: fixed;background-repeat: no-repeat;}
+      li a {text-decoration: none;}
+      li a:hover,li a:focus,li a:visited{text-decoration: none;}
+      a {border-bottom: 0; text-decoration: none;}
+      ul li a {font-weight:bold;}
+      #word{font-size: 50px;}
+      #word:hover,#word:focus,#word:visited{text-decoration: none;}
+      #top{font-size: 20px}
+      #logout a:hover ,#logout a:focus,#logout a:visited{text-decoration: none;}
+      h1 a:hover{color:red;}
+      #logout a:hover{color:red;}
+      .opener {font-weight:bold;text-shadow:2px 2px 2px #cccccc;}
+      #first {font-weight:bold;text-shadow:2px 2px 2px #cccccc;}
+      #second {font-weight:bold;text-shadow:2px 2px 2px #cccccc; margin-top: 20px;}
+      #bp6 {font-weight:bold;}
+      .breadcrumb {box-shadow: 5px 5px 5px 1px #cccccc;mar}
+    
+/*----------------------------------------------------------------------------------*/
+
+      tr:nth-child(even){background: rgba(80%,80%,80%,0.6);}
+      #data1{height:600px;overflow:scroll;}
+      
+    </style>
+  </head>
+  <body>
+<span style="text-align: left;"></span>
+    <!-- Wrapper -->
+      <div id="wrapper">
+
+        <!-- Main -->
+          <div id="main">
+            <div class="inner">
+
+              <!-- Header -->
+                <header>
+                   <div id="top">
+                      <img src="">
+                        <h1>
+                        <a href="#" id ="word">EasyFood後端管理系統</a>
+                        </h1>
+                        <div class="text-right" id="logout">
+                            歡迎 <a href="#">xxx</a>
+                            <span>|</span>
+                            <a href="#">登出</a>
+                        </div>
+                  </div>
+                  <div>
+                      <div class="row">
+                          <div class="col-xs-12 col-sm-12">
+                              <div>
+                                  <ol class="breadcrumb">
+                                      <li>
+                                          <a href="#"><b>首頁</b></a>
+                                      </li>
+                                      <li class="active"><b>管理會員權限</b></li>
+                                  </ol>
+                              </div>
+                          </div>
+                      </div>
+                  </div>     
+                </header>
+                    
+              <!-- Banner -->
+                <section>
+                  <div>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-3" style="border-width:3px;border-style:groove;border-color:#FFAC55;padding:5px;">
+                        <h3>資料查詢</h3>
+                        <!-- <%-- 錯誤表列 --%>
+                        <c:if test="${not empty errorMsgs}">
+                          <font color='red'>請修正以下錯誤:
+                          <ul>
+                            <c:forEach var="message" items="${errorMsgs}">
+                              <li>${message}</li>
+                            </c:forEach>
+                          </ul>
+                          </font>
+                        </c:if> -->
+
+                            <FORM METHOD="post" ACTION="" >
+                                <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">員工編號 : </span>
+                                <input type="text" class="form-control" name="">
+                                </div>
+                                <input type="submit" value="送出">
+                                <input type="hidden" name="action" value="getOne_For_Display">
+                            </FORM>
+                          </li>
+
+                       <!--    <jsp:useBean id="empSvc" scope="page" class="com.emp.model.EmpService" /> -->
+                           
+                          <li>
+                             <FORM METHOD="post" ACTION="" >
+                                <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon2">員工姓名 : </span>
+                                <input type="text" class="form-control" name="">
+                                </div>
+                                <input type="submit" value="送出">
+                                <input type="hidden" name="action" value="getOne_For_Display">   
+                            </FORM>
+                          </li>
+                          
+                          <li>
+                             <FORM METHOD="post" ACTION="" >
+                               <span class="input-group-addon" id="basic-addon3">員工職務 : </span>
+                               <select size="1" name="" class="form-control">
+                                 <!-- <c:forEach var="empVO" items="${empSvc.all}" > 
+                                  <option value="${empVO.empno}">${empVO.ename}
+                                 </c:forEach>   --> 
+                               </select>
+                               <input type="submit" value="送出">
+                               <input type="hidden" name="action" value="getOne_For_Display">
+                             </FORM>
+                          </li>
+                        </ul>
+
+
+                        
+
+                        <ul>
+                          <>
+                        </ul>
+                      </div>
+
+
+
+                      <div class="col-xs-12 col-sm-9"  id ="data1">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr class="success">
+                              <th class="col-sm-1">管理員編號</th>
+                              <th class="col-sm-1">管理員姓名</th>
+                              <th class="col-sm-2">管理員地址</th>
+                              <th class="col-sm-1">管理員電話</th>
+                              <th class="col-sm-1">管理員職位</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                            </tr>
+                            <tr>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                            </tr>
+                            <tr>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                            </tr>
+                            <tr>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                            </tr>
+                            <tr>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                            </tr>
+                            <tr>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                            </tr>
+                            <tr>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                            </tr>
+                            <tr>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                            </tr>
+                            <tr>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                            </tr>
+                            <tr>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                            </tr>
+                            <tr>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                              <td>我是資料</td>
+                            </tr>
+                            
+                            
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                  <button type="button" class="btn btn-info" id="add">新增管理員</button>
+                  </div>
+                </section>
+
+
+
+
+            
+            </div>
+          </div>
+
+        <!-- Sidebar -->
+          <div id="sidebar">
+            <div class="inner">
+
+              <!-- Search -->
+                <div id ="small">
+                  <img src="images/end/logo.png">
+                </div>
+
+              <!-- Menu -->
+                <nav id="menu">
+                  <header>
+                    <h1>管理選單</h1>
+                  </header>
+                  <ul>
+                    <li>
+                      <span>會員管理</span>
+                      
+                    </li>
+                    <li>
+                      <span class="opener">店家管理</span>
+                      <ul>
+                        <li><a href="#">施</a></li>
+                        <li><a href="#">工</a></li>
+                        <li><a href="#">中</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <span class="opener">管理員管理</span>
+                      <ul>
+                        <li><a href="#">新增管理員</a></li>
+                        <li><a href="#">管理員權限控管</a></li>
+                        <li><a href="#">中</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <span class="opener">檢舉管理</span>
+                      <ul>
+                        <li><a href="#">施</a></li>
+                        <li><a href="#">工</a></li>
+                        <li><a href="#">中</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <span class="opener">廣告管理</span>
+                      <ul>
+                        <li><a href="#">施</a></li>
+                        <li><a href="#">工</a></li>
+                        <li><a href="#">中</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+
+              
+
+            </div>
+          </div>
+
+      </div>
+
+
+
+
+    <!-- Scripts -->
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="back_js/jquery.min.js"></script>
+      <script src="back_js/skel.min.js"></script>
+      <script src="back_js/util.js"></script>
+      <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+      <script src="back_js/main.js"></script>
+
+  </body>
+</html>

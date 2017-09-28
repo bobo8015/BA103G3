@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		<title>食在方便管理系統</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="css/administrator.css">
+		<!--[if lt IE 9]>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-3">
+		    
+                <div id ="small">
+                  <img src="../../images/logo.png" width=97%>
+                </div>
+
+
+		    <div class="list-group"><b>
+			    <a href="../member/member.html" class="list-group-item list-group-item-warning">會員管理</a>
+			    <a href="../store/store.html" class="list-group-item list-group-item-warning">店家管理</a>
+			    <a href="../administrator/administrator.html" class="list-group-item list-group-item-warning active">管理員管理</a>
+          <a href="../admprivileges/admprivileges.html" class="list-group-item list-group-item-warning">管理員權限管理</a>
+			    <a href="../report/report.html" class="list-group-item list-group-item-warning">檢舉管理</a>
+			    <a href="../advertising/advertising.html" class="list-group-item list-group-item-warning">廣告管理</a>
+		    </b></div>
+
+
+
+			</div>
+			<div class="col-xs-12 col-sm-9">
+			     <br>
+
+			     <!--右邊導覽列-->
+			 <div class="row">   
+			     <div class="container-fluid">                  
+                 <nav class="navbar navbar-default" role="navigation">
+                  
+                  <div class="navbar-header">
+                   <a href="../../index.html" class="navbar-brand" href="#" id="navbar-title"><b>食在方便管理系統</b></a>
+                  </div>
+                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="class/member/login.html"><span class="glyphicon glyphicon-user"></span><b>員工登入　</b></a></li>
+                 </ul>   
+                    
+                </nav>
+                </div>
+             </div> 
+     <!--內容-->
+
+	<div class="row second_row">
+		<div id="second_content">
+
+    <div >
+      <ol class="breadcrumb">
+        <li>
+          <a href="#">首頁</a>
+        </li>
+        <li>
+          <a href="#">管理員管理</a>
+        </li>
+        <li>
+          <a href="#">查詢管理員</a>
+        </li>
+      </ol>
+   </div>
+
+        <div role="tabpanel">
+            <!-- 標籤面板：標籤區 -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">查詢管理員</a>
+                </li>
+                <li role="presentation" >
+                    <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">新增管理員</a>
+                </li>
+                <li role="presentation" >
+                    <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">所有管理員</a>
+                </li>
+            </ul>
+        </div>
+                    
+        <div class="tab-content">
+
+                <!-- tab1  管理管理員 -->
+                <div role="tabpanel" class="tab-pane active" id="tab1">
+                  <div>
+                    <br>
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <form class="form-horizontal" action="">
+                         <h4>查詢員工資料 :</h4>
+                         <input type="text" name="adm" style="width: 300px;height: 33px" placeholder="請輸入員工帳號">  
+                         <input type="button" name="" class="btn btn-success" value="查詢">          
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- tab2  新增管理員 -->
+                <div role="tabpanel" class="tab-pane" id="tab2">
+
+                <div class="col-xs-12 col-sm-2"></div>
+                <div class="col-xs-12 col-sm-8">
+
+        <div class="main-login main-center">
+          <form class="form-horizontal" method="post" action="#">           
+            <div class="form-group">
+              <label for="name" class="control-label col-sm-2 ">帳號:</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="name" id="name"  placeholder="輸入帳號"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="control-label col-sm-2">姓名:</label>
+              <div class="cols-sm-10">
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="username" id="username"  placeholder="輸入姓名"/>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="address" class="control-label col-sm-2">地址:</label>
+              <div class="cols-sm-10">
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="address" id="address"  placeholder="輸入地址"/>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone" class="control-label col-sm-2">電話:</label>
+              <div class="cols-sm-10">
+                <div class="col-sm-10">
+                  <input type="tel" class="form-control" name="phone" id="phone"  placeholder="輸入手機號碼"/>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="position" class="control-label col-sm-2">職位:</label>
+              <div class="cols-sm-10">
+                <div class="col-sm-10">
+                    <select name="">
+                      <option value="" selected="">請選擇</option>
+                      <option value="">會員管理員</option>
+                      <option value="">店家管理員</option>
+                      <option value="">員工管理員</option>
+                      <option value="">檢舉管理員</option>
+                      <option value="">廣告管理員</option>
+                      <option value="">總經理</option>
+                  </select>　
+                </div>
+              </div>
+            </div>  
+
+            <div class="form-group">
+              <label for="feature" class="control-label col-sm-2">權限:</label>
+              <div class="cols-sm-12">
+
+               　<input type="checkbox"  name="feature"/>管理員工　
+                <input type="checkbox"  name="feature"/>管理員工權限　
+                <input type="checkbox"  name="feature"/>管理會員<br>
+               　<input type="checkbox"  name="feature"/>管理店家　
+                <input type="checkbox"  name="feature"/>管理廣告　　　
+                <input type="checkbox"  name="feature"/>管理檢舉　<br>
+          　　　　　&nbsp;&nbsp;(<input type="checkbox"  name="feature"  onclick='check_all(this,"feature")' >全選)　
+      
+              </div>
+            </div> 
+
+                <div class="login-register" align="center">
+                　　　<br>
+                    <input type="button" name="" class="btn btn-success" value="新增">
+                </div>
+          </form>
+
+          <input type="button" name="" onclick="add_click()" value="琪">
+        </div>
+                </div>
+                <div class="col-xs-12 col-sm-2"></div>
+
+          
+                </div>
+         <!-- tab3  所有管理員 -->
+                <div role="tabpanel" class="tab-pane" id="tab3">
+                  <div>
+                  <div align="center"><h4><b>所有員工列表</b></h4></div>
+                     <table class="table table-striped table-hover" style='word-break: keep-all'>
+                         <thead>
+                           <tr class="danger">
+                               <th>帳號</th>
+                               <th>姓名</th>
+                               <th>地址</th>
+                               <th>電話</th>
+                               <th>職位</th>
+                               <th>權限</th>
+                               <th>修改</th>
+                               <th>刪除</th>
+                           </tr>
+                         </thead>
+                         <tbody>
+                           <tr><td></td></tr>
+                         </tbody>
+                     </table>
+                  </div>
+                </div>
+       </div>
+	</div>
+
+
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- footer -->
+    <footer >
+      <div class="container">
+        <div class="col-sm-2">
+          <img src="../../images/logo.png" class="img-responsive">
+        </div>
+        <div class="col-sm-2">
+          <h5>公司</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">文件資料</a></li>
+            <li><a href="#">Packt出版社</a></li>
+            <li><a href="#">關於我們</a></li>
+            <li><a href="#">聯絡資訊</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-2">
+          <h5>社群</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">部落格</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-2">
+          <h5>客戶支援</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">聯絡資訊</a></li>
+            <li><a href="#">隱私政策</a></li>
+            <li><a href="#">條款與細則</a></li>
+            <li><a href="#">服務台</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-4">
+          <address>
+            <strong>食在方便有限公司</strong>
+            地址第 1 行<br>
+			      地址第 2 行<br>
+            <abbr title="Phone">TEL：</abbr> (02) 1234-5678
+          </address>
+        </div>
+      </div>
+    </footer>
+
+
+
+
+    
+    <script type="text/javascript"> 
+        function check_all(obj,cName) 
+        { 
+            var checkboxs = document.getElementsByName(cName); 
+            for(var i=0;i<checkboxs.length;i++){
+              //等於all的checked的狀態
+              checkboxs[i].checked = obj.checked;
+            } 
+        } 
+
+        function add_click(){
+          document.getElementById("adm_acc").value="CHICHI";
+          document.getElementById("adm_pas").value="777777";
+        }
+    </script> 		
+		
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</body>
+</html>

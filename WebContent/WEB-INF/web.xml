@@ -39,6 +39,18 @@
 		<servlet-name>Mem_Red_Img</servlet-name>
 		<url-pattern>/tools/Mem_Red_Img</url-pattern>
 	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>Adv_Red_Img</servlet-name>
+		<servlet-class>com.tools.Adv_Red_Img</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Adv_Red_Img</servlet-name>
+		<url-pattern>/tools/Adv_Red_Img</url-pattern>
+	</servlet-mapping>
+	
+	
  	
  	<servlet>
 		<servlet-name>ProServlet</servlet-name>

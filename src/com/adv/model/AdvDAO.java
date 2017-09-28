@@ -36,7 +36,7 @@ public class AdvDAO implements AdvDAO_interface{
 		private static final String UPDATE = 
 			"UPDATE ADVERTISING set ADV_STA=? where ADV_NO = ?";
 		private static final String GET_ALL_STR_ADV = 
-			"SELECT ADV_STR,ADV_END,ADV_TXT,ADV_STA FROM ADVERTISING  where STR_NO = ?";
+			"SELECT ADV_NO,ADV_STR,ADV_END,ADV_TXT,ADV_STA FROM ADVERTISING  where STR_NO = ?";
 	
 		
 	
@@ -254,6 +254,7 @@ public class AdvDAO implements AdvDAO_interface{
 			while (rs.next()) {
 				
 			advVO = new AdvVO();
+			advVO.setAdv_no(rs.getString("adv_no"));
 			advVO.setAdv_end(rs.getDate("adv_end"));
 			advVO.setAdv_str(rs.getDate("adv_str"));
 			advVO.setAdv_txt(rs.getBytes("adv_txt"));

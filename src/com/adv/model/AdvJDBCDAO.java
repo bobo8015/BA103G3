@@ -312,4 +312,10 @@ public class AdvJDBCDAO implements AdvDAO_interface{
 
 		return baos.toByteArray();
 		}
+
+		@Override
+		public List<AdvVO> getAllStrAdv(String str_no) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 }
