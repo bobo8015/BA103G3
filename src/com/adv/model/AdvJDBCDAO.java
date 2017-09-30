@@ -31,7 +31,8 @@ public class AdvJDBCDAO implements AdvDAO_interface{
 			"DELETE FROM ADVERTISING where ADV_NO = ?";
 		private static final String UPDATE = 
 			"UPDATE ADVERTISING set ADV_STA=? where ADV_NO = ?";
-	
+		private static final String GET_ALL_STR_AUDIT =
+			"SELECT ADV_NO,STR_NO,ADV_STR,ADV_END,ADV_TXT,ADV_STA FROM ADVERTISING  where ADV_STA = '待審核'";	
 		
 	
 		@Override
@@ -249,21 +250,84 @@ public class AdvJDBCDAO implements AdvDAO_interface{
 			return list;
 		}
 		
+		@Override
+		public List<AdvVO> getAllStrAudit() {
+			List<AdvVO> list =  new ArrayList<AdvVO>();
+			AdvVO advVO = null;
+			
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+	try {		
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement( GET_ALL_STR_AUDIT);
+			
+	
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				
+			advVO = new AdvVO();
+			advVO.setAdv_no(rs.getString("adv_no"));
+			advVO.setStr_no(rs.getString("str_no"));
+			advVO.setAdv_end(rs.getDate("adv_end"));
+			advVO.setAdv_str(rs.getDate("adv_str"));
+			advVO.setAdv_txt(rs.getBytes("adv_txt"));
+			advVO.setAdv_sta(rs.getString("adv_sta"));
+			list.add(advVO);
+		}	
+			
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		if (rs != null) {
+			try {
+				rs.close();
+			} catch (SQLException se) {
+				se.printStackTrace(System.err);
+			}
+		}
+		if (pstmt != null) {
+			try {
+				pstmt.close();
+			} catch (SQLException se) {
+				se.printStackTrace(System.err);
+			}
+		}
+		if (con != null) {
+			try {
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace(System.err);
+			}
+		}
+	}
+			
+			return list;
+		}
+		
 		
 		public static void main(String[] args) throws IOException {
 			
 			AdvJDBCDAO dao = new AdvJDBCDAO();
 
 //--------------新增-------------------------
-			AdvVO advVO1 = new AdvVO();
-			
-			advVO1.setStr_no("STR_0001");
-			advVO1.setAdv_str(java.sql.Date.valueOf("2017-10-01"));
-			advVO1.setAdv_end(java.sql.Date.valueOf("2017-11-01"));
-			advVO1.setAdv_txt(getPictureByteArray("D://me.jpg"));
-			advVO1.setAdv_sta("未審核");
-			
-			dao.insert(advVO1);
+//			AdvVO advVO1 = new AdvVO();
+//			
+//			advVO1.setStr_no("STR_0001");
+//			advVO1.setAdv_str(java.sql.Date.valueOf("2017-10-01"));
+//			advVO1.setAdv_end(java.sql.Date.valueOf("2017-11-01"));
+//			advVO1.setAdv_txt(getPictureByteArray("D://me.jpg"));
+//			advVO1.setAdv_sta("未審核");
+//			
+//			dao.insert(advVO1);
 
 			
 //--------------修改不通過------------------		
@@ -275,24 +339,24 @@ public class AdvJDBCDAO implements AdvDAO_interface{
 //			dao.update(advVO2);
 
 //--------------查詢單一-----------------			
-			AdvVO advVO3 = dao.findByPrimaryKey("ADV_0003");
-			System.out.print(advVO3.getAdv_no() + ",");
-			System.out.print(advVO3.getStr_no() + ",");
-			System.out.print(advVO3.getAdv_str() + ",");
-			System.out.print(advVO3.getAdv_end() + ",");
-			System.out.print(advVO3.getAdv_txt() + ",");
-			System.out.print(advVO3.getAdv_sta());
+//			AdvVO advVO3 = dao.findByPrimaryKey("ADV_0003");
+//			System.out.print(advVO3.getAdv_no() + ",");
+//			System.out.print(advVO3.getStr_no() + ",");
+//			System.out.print(advVO3.getAdv_str() + ",");
+//			System.out.print(advVO3.getAdv_end() + ",");
+//			System.out.print(advVO3.getAdv_txt() + ",");
+//			System.out.print(advVO3.getAdv_sta());
 //			
 //---------------查詢全部-------------			
-//			List<AdvVO> list = dao.getAll();
-//			for (AdvVO aadv : list) {
-//				System.out.print(aadv.getAdv_no() + ",");
-//				System.out.print(aadv.getStr_no() + ",");
-//				System.out.print(aadv.getAdv_str() + ",");
-//				System.out.print(aadv.getAdv_end() + ",");
-//				System.out.print(aadv.getAdv_txt() + ",");
-//				System.out.print(aadv.getAdv_sta());
-//			}
+			List<AdvVO> list = dao.getAllStrAudit();
+			for (AdvVO aadv : list) {
+				System.out.print(aadv.getAdv_no() + ",");
+				System.out.print(aadv.getStr_no() + ",");
+				System.out.print(aadv.getAdv_str() + ",");
+				System.out.print(aadv.getAdv_end() + ",");
+				System.out.print(aadv.getAdv_txt() + ",");
+				System.out.print(aadv.getAdv_sta());
+			}
 //----------------刪除-----------------			
 //			dao.delete("ADV_0002");
 //			
@@ -318,4 +382,12 @@ public class AdvJDBCDAO implements AdvDAO_interface{
 			// TODO Auto-generated method stub
 			return null;
 		}
+
+		@Override
+		public List<AdvVO> getAllStrAuditOk() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
 }

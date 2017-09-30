@@ -45,14 +45,14 @@ public class FavServlet extends HttpServlet{
 			
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/fav/member_favorite.jsp");
+						.getRequestDispatcher("/easyfood/front-end/class/fav/member_favorite.jsp");
 				failureView.forward(req, res);
 				return;//程式中斷
 			}
 			
 			/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 			req.setAttribute("favVO", favVO); // 資料庫取出的favVO物件,存入req
-			String url = "/fav/member_favorite.jsp";
+			String url = "/easyfood/front-end/class/fav/member_favorite.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 			successView.forward(req, res);
 		}
@@ -70,13 +70,13 @@ public class FavServlet extends HttpServlet{
 			System.out.println(str_no);
 			favSvc.deleteFav(mem_no,str_no);
 			
-			String url = "/fav/member_favorite.jsp";
+			String url = "/easyfood/front-end/class/fav/member_favorite.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); 
 			successView.forward(req, res);
 		} catch(Exception e){
 			errorMsgs.add("刪除最愛店家失敗:"+e.getMessage());
 			RequestDispatcher failureView = req
-					.getRequestDispatcher("/fav/member_favorite.jsp");
+					.getRequestDispatcher("/easyfood/front-end/class/fav/member_favorite.jsp");
 			failureView.forward(req, res);
 		}
 		

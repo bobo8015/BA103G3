@@ -39,6 +39,19 @@ public class AdvService {
 		return advVO;
 	}
 	
+	public AdvVO updateAdv_Sta(String adv_no,String adv_sta){
+		AdvVO advVO = new AdvVO();
+		
+		advVO.setAdv_no(adv_no);
+		advVO.setAdv_sta(adv_sta);
+	
+		
+		dao.update(advVO);
+		
+		return advVO;
+	}
+	
+	
 	public void deleteAdv(String adv_no) {
 		dao.delete(adv_no);
 	}
@@ -49,6 +62,14 @@ public class AdvService {
 	
 	public List<AdvVO> getAll() {
 		return dao.getAll();
+	}
+	
+	public List<AdvVO> getAllStrAudit() {
+		return dao.getAllStrAudit();
+	}
+	
+	public List<AdvVO> getAllStrAuditOk() {
+		return dao.getAllStrAuditOk();
 	}
 	
 	public List<AdvVO> getAllStrAdv(String str_no){

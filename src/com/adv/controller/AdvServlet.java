@@ -34,8 +34,8 @@ public class AdvServlet extends HttpServlet{
 		System.out.println("有進入控制器");
 		
 	
-if("In_For_Adv".equals(action)){
-	System.out.println(action);
+			if("In_For_Adv".equals(action)){
+			System.out.println(action);
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
@@ -75,7 +75,7 @@ if("In_For_Adv".equals(action)){
 							
 				if (!errorMsgs.isEmpty()) {
 					System.out.println(errorMsgs);
-					RequestDispatcher failureView = req.getRequestDispatcher("/store/str_advertise02.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/easyfood/front-end/class/store/str_advertise02.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -91,10 +91,37 @@ if("In_For_Adv".equals(action)){
 			}catch (Exception e) {
 				errorMsgs.add("無法取得圖片");
 				System.out.println(errorMsgs);
-				RequestDispatcher failureView = req.getRequestDispatcher("/store/str_advertise02.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/easyfood/front-end/class/store/str_advertise02.jsp");
 				failureView.forward(req, res);
 			}
 		}
-	}
 	
+	
+		if("Update_For_adv".equals(action)){
+			System.out.println(action);
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try{	
+				
+				String adv_no =	req.getParameter("adv_no");
+				String adv_sta = req.getParameter("adv_sta");
+				
+				AdvVO strVO = new AdvVO();
+				
+				strVO.setAdv_no(adv_no);
+				strVO.setAdv_sta(adv_sta);
+				
+				AdvService advSvc = new AdvService();
+				
+				advSvc.updateAdv_Sta(adv_no, adv_sta);
+				
+				String url = "/easyfood/back-end/class/advertising/adverising.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+			}catch (Exception e) {
+				
+			}
+		}
+	}
 }

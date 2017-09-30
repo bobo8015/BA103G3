@@ -370,7 +370,7 @@ public class StrServlet extends HttpServlet {
 				
 				if(!errorMsgs.isEmpty()) {
 					request.setAttribute("strVO", strVO);
-					RequestDispatcher failureView = request.getRequestDispatcher("/store/str_profile02.jsp");
+					RequestDispatcher failureView = request.getRequestDispatcher("/easyfood/front-end/class/store/str_profile02.jsp");
 					failureView.forward(request, response);
 					return;	
 				}
@@ -388,7 +388,7 @@ public class StrServlet extends HttpServlet {
 				 
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = request.getRequestDispatcher("/store/str_profile02.jsp");
+				RequestDispatcher failureView = request.getRequestDispatcher("/easyfood/front-end/class/store/str_profile02.jsp");
 				failureView.forward(request, response);
 			}
 			
@@ -482,13 +482,13 @@ public class StrServlet extends HttpServlet {
 				
 			
 				
-				String url = "/store/str_profile01.jsp";
+				String url = "/easyfood/front-end/class/store/str_profile01.jsp";
 				RequestDispatcher successView = request.getRequestDispatcher(url);
 				successView.forward(request, response);
 				
 			}catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = request.getRequestDispatcher("/store/str_profile02.jsp");
+				RequestDispatcher failureView = request.getRequestDispatcher("/easyfood/front-end/class/store/str_profile02.jsp");
 				failureView.forward(request, response);
 			}
 			
@@ -531,7 +531,7 @@ public class StrServlet extends HttpServlet {
 				
 				if (!errorMsgs.isEmpty()) {
 					request.setAttribute("errorMsgs", errorMsgs);
-					RequestDispatcher failureView = request.getRequestDispatcher("/store/str_profile03.jsp");		
+					RequestDispatcher failureView = request.getRequestDispatcher("/easyfood/front-end/class/store/str_profile03.jsp");		
 					failureView.forward(request, response);
 					return;
 				}
@@ -545,7 +545,7 @@ public class StrServlet extends HttpServlet {
 				
 			}catch (Exception e) {
 				errorMsgs.add("更新失敗" + e.getMessage());
-				RequestDispatcher failureView = request.getRequestDispatcher("/store/str_profile02.jsp");
+				RequestDispatcher failureView = request.getRequestDispatcher("/easyfood/front-end/class/store/str_profile02.jsp");
 				failureView.forward(request, response);
 			}
 			
