@@ -44,11 +44,11 @@
 	    <link rel="stylesheet" href="<%=request.getContextPath()%>/easyfood/front-end/class/fav/css/base.css">
 	    <style type="text/css">
  
-      ol{
-    margin-top: 50px;
-    margin-bottom: 10px;
-	}
-    </style>
+	      	ol{
+		    margin-top: 50px;
+		    margin-bottom: 10px;
+			}
+    	</style>
 
 	</head>
 	<body>
@@ -59,7 +59,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-      <a href="../../index.html" class="navbar-brand" href="#" id="navbar-title"><img src="../../images/logo.png" width="30px" id="imgTop" class="pull-left"><b>食在方便</b></a>
+<!--       <a href="../../index.html" class="navbar-brand" href="#" id="navbar-title"><img src="../../images/logo.png" width="30px" id="imgTop" class="pull-left"><b>食在方便</b></a> -->
     </div>
     <ul class="nav navbar-nav">
             <li><a href="../search/search.html" >搜尋店家</a></li>
@@ -176,7 +176,7 @@
                 			</c:if>
                 		</c:forEach> 	                  	
                   </div>
-                </c:forEach>              
+                </c:forEach>               
               </div>                 
 			     </div>             
         </div>
