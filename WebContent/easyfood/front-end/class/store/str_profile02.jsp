@@ -31,7 +31,7 @@
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/easyfood/front-end/class/store/css/str_profile.css">
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/easyfood/front-end/class/store/css/style.css">
 	</head>
-	<body onload="gettime();">
+	<body>
 <!-- header======================================= -->	
 		<div class="page-header center-header">
 		  <span>食在方便<small>店家中心</small></span>
@@ -251,10 +251,15 @@
 		<script src="<%=request.getContextPath()%>/easyfood/front-end/class/store/js/transLatLng.js"></script>
 		<script>
 		
+		$(document).ready(function(){
+			gettime();
+		});
+		
+		
 		function gettime(){
 		
 			var time = <%=storVO.getStr_pre()%>;
-			
+					
 			switch(time) {
 		    case 15:
 		    	$('#time').val('15');

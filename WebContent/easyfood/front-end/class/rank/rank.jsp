@@ -22,20 +22,32 @@ String mem_no = (String) session.getAttribute("mem_no");
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
     <style type="text/css">
-      .item{
-        background-color: #eee;
+      .item1{
+        margin-top:10px;
         margin-bottom: 5px;
+        background-color: #eee;
+        border-radius:10px
       }
       
       .abc{
-        -webkit-border-radius: 20px;
-        -moz-border-radius: 20px;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 10px;
         border-radius: 100px;
-        padding:20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+
       } 
       .nav-tabs{
          background-color: #eee;
       }
+      .title{
+        color: red;       
+      }
+      .item1_title{
+      	color: 	#46A3FF; 
+      }
+	  
+
     </style>
 	</head>
 	<body>
@@ -57,115 +69,230 @@ String mem_no = (String) session.getAttribute("mem_no");
 			</div>
 		</div>
 	</div>
-	<br>
-  <div class="row firstRow">
+	
+  <div class="row firstRow">  
+	   <div class="col-xs-12 col-sm-6">
+	    <H3 class="title">熱門店家排名</H3>
+        <div role="tabpanel">
+             <!-- 標籤面板：標籤區 -->
+             <ul class="nav nav-tabs" role="tablist">
+                 <li role="presentation" class="active">
+                     <a href="#tab1_1" aria-controls="tab1" role="tab" data-toggle="tab">週排名</a>
+                 </li>
+                 <li role="presentation">
+                     <a href="#tab1_2" aria-controls="tab2" role="tab" data-toggle="tab">月排名</a>
+                 </li>
+                 <li role="presentation">
+                     <a href="#tab1_3" aria-controls="tab3" role="tab" data-toggle="tab">年度排名</a>
+                 </li>
+             </ul>
+         
+             <!-- 標籤面板：內容區 -->
+             <div class="tab-content">
+                 <div role="tabpanel" class="tab-pane active" id="tab1_1">
 
-    
+                 	<div class="container-fluid item1 ">
+                    <div class="col-xs-12 col-sm-3">
+                    	<div>                    		
+                    		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
+                    	</div>		
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                      <h4 >夏慕尼 - 1桃園中山東店 </h4>
+                 		  <div>燒烤類</div>		
+                      <div>我是店家簡介</div>
+                    </div>              
+                  </div>
 
-    <div class="col-xs-12 col-sm-6">
-      <h3>店家排行榜</h3>
-     <div role="tabpanel">
-         <!-- 標籤面板：標籤區 -->
-         <ul class="nav nav-tabs" role="tablist">
-             <li role="presentation" class="active">
-                 <a href="#tab1_1" aria-controls="tab1" role="tab" data-toggle="tab">週榜</a>
-             </li>
-             <li role="presentation">
-                 <a href="#tab1_2" aria-controls="tab2" role="tab" data-toggle="tab">月榜</a>
-             </li>
-             <li role="presentation">
-                 <a href="#tab1_3" aria-controls="tab3" role="tab" data-toggle="tab">年榜</a>
-             </li>
-         </ul>
-     
-         <!-- 標籤面板：內容區 -->
-         <div class="tab-content">
-             <div role="tabpanel" class="tab-pane active" id="tab1_1">
-             	<div class="item">
-                  <img class="abc" src="images/bobo_image/4_7.jpg" width="150">
-                              夏慕尼 - 桃園中山東店 
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                  Cumque ducimus minus doloremque id temporibus omnis ipsam ab dolore, labore beatae.
-                </div>
-                <div class="item">
-                  <img class="abc" src="images/bobo_image/4_7.jpg"  width="150">
-                              夏慕尼 - 桃園中山東店 
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                  Cumque ducimus minus doloremque id temporibus omnis ipsam ab dolore, labore beatae.
-                </div>
-             </div>
-             <div role="tabpanel" class="tab-pane" id="tab1_2">
-             </div>
-             <div role="tabpanel" class="tab-pane" id="tab1_3">
-             </div>
-         </div>
-     </div>
+                  <div class="container-fluid item1">
+                    <div class="col-xs-12 col-sm-3">
+                      <div>                       
+                        <img class="abc img-responsive" src="images/bobo_image/4_7.jpg"  >
+                      </div>    
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                      <h4>夏慕尼 - 2桃園中山東店 </h4>
+                 
+                      <div>
+                     		  我是店家簡介
+                      </div>
+                    </div>              
+                  </div>
+
+ 
+                    
+               </div>
+                 <div role="tabpanel" class="tab-pane" id="tab1_2">
+                 	<div class="container-fluid item1">
+                    <div class="col-xs-12 col-sm-3">
+                    	<div>                    		
+                    		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
+                    	</div>		
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                      <h4>夏慕尼 - 3桃園中山東店 </h4>
              
+                      <div>
+                     	 我是店家簡介
+                      </div>
+                    </div>              
+                  </div>
 
-               
+                  <div class="container-fluid item1">
+                    <div class="col-xs-12 col-sm-3">
+                      <div>                       
+                        <img class="abc img-responsive" src="images/bobo_image/4_7.jpg"  >
+                      </div>    
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                      <h4>夏慕尼 - 4桃園中山東店 </h4>
+                 
+                      <div>
+                     		  我是店家簡介
+                      </div>
+                    </div>              
+                  </div>
+                 </div>
+                 <div role="tabpanel" class="tab-pane" id="tab1_3">
+					         <div class="container-fluid item1">
+                    <div class="col-xs-12 col-sm-3">
+                      <div>                       
+                        <img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
+                      </div>    
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                      <h4>夏慕尼 - 5桃園中山東店 </h4>
+             
+                      <div>
+                       我是店家簡介
+                      </div>
+                    </div>              
+                  </div>
 
+                  <div class="container-fluid item1">
+                    <div class="col-xs-12 col-sm-3">
+                      <div>                       
+                        <img class="abc img-responsive" src="images/bobo_image/4_7.jpg"  >
+                      </div>    
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                      <h4>夏慕尼 - 6桃園中山東店 </h4>
+                 
+                      <div>
+                          我是店家簡介
+                      </div>
+                    </div>              
+                  </div>
+                </div>
+             </div>
+         </div> 
+     </div>
+     
+     <div class="col-xs-12 col-sm-6">
+        <h3 class="title">熱門種類排名</h3>
+        <div role="tabpanel">
+             <!-- 標籤面板：標籤區 -->
+             <ul class="nav nav-tabs" role="tablist">
+                 <li role="presentation" class="active">
+                 
+                     <a href="#tab2_1" aria-controls="tab1" role="tab" data-toggle="tab">義大利麵</a>             
+                 <li role="presentation">
+                     <a href="#tab2_2" aria-controls="tab2" role="tab" data-toggle="tab">素食</a>
+                 </li>
+                 <li role="presentation">
+                     <a href="#tab2_3" aria-controls="tab3" role="tab" data-toggle="tab">燉飯</a>
+                 </li>
+                 <li role="presentation">
+                     <a href="#tab2_4" aria-controls="tab4" role="tab" data-toggle="tab">飲品</a>
+                 </li>
+             </ul>
+         
+             <!-- 標籤面板：內容區 -->
+             <div class="tab-content">
+                 <div role="tabpanel" class="tab-pane active" id="tab2_1">
+                 	<div class="item1">
+                    <div class="col-xs-12 col-sm-3">
+                    	<div>
+                    		
+                    		<img class="abc img-responsive" src="images/bobo_image/4_7.jpg"  >
+                    	</div>		
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                                    夏慕尼 - 1桃園中山東店 
+                      <br><br>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque ducimus minus doloremque id 
+                      temporibus omnis ipsam ab dolore, labore beatae.
 
-    </div>
-	        
-      	
+                    </div>
+                    
+                  </div>  
+                   
+                 </div>
+                 <div role="tabpanel" class="tab-pane" id="tab2_2">
+                  	<div class="item1">
+                    <div class="col-xs-12 col-sm-3">
+                    	<div>
+                    		
+                    		<img class="abc img-responsive" src="images/bobo_image/4_7.jpg"  >
+                    	</div>		
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                                    夏慕尼 - 2桃園中山東店 
+                      <br><br>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque ducimus minus doloremque id 
+                      temporibus omnis ipsam ab dolore, labore beatae.
 
+                    </div>
+                    
+                  </div> 
+                   
+                 </div> 
+                 <div role="tabpanel" class="tab-pane" id="tab2_3">
+                  	<div class="item1">
+                    <div class="col-xs-12 col-sm-3">
+                    	<div>
+                    		
+                    		<img class="abc img-responsive" src="images/bobo_image/4_7.jpg"  >
+                    	</div>		
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                                    夏慕尼 - 3桃園中山東店 
+                      <br><br>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque ducimus minus doloremque id 
+                      temporibus omnis ipsam ab dolore, labore beatae.
 
+                    </div>
+                    
+                  </div> 
+                   
+                 </div>
+                 <div role="tabpanel" class="tab-pane" id="tab2_4">
+                 	<div class="item1">
+                    <div class="col-xs-12 col-sm-3">
+                    	<div>
+                    		
+                    		<img class="abc img-responsive" src="images/bobo_image/4_7.jpg"  >
+                    	</div>		
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                                    夏慕尼 - 4桃園中山東店 
+                      <br><br>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque ducimus minus doloremque id 
+                      temporibus omnis ipsam ab dolore, labore beatae.
 
+                    </div>
+                    
+                  </div>  
+                   
+                 </div>
+             </div>
+         </div> 
+     </div>
     
-    <div class="col-xs-12 col-sm-6">
-    	<h3>種類銷售排行榜</h3>
-      <div role="tabpanel">
-          <!-- 標籤面板：標籤區 -->
-          <ul class="nav nav-tabs" role="tablist">
-              <li role="presentation" class="active">
-                  <a href="#tab2_1" aria-controls="tab1" role="tab" data-toggle="tab">義大利麵</a>
-              </li>
-              <li role="presentation">
-                  <a href="#tab2_2" aria-controls="tab2" role="tab" data-toggle="tab">燉飯</a>
-              </li>
-              <li role="presentation">
-                  <a href="#tab2_3" aria-controls="tab3" role="tab" data-toggle="tab">素食</a>
-              </li>
-              <li role="presentation">
-                  <a href="#tab2_4" aria-controls="tab4" role="tab" data-toggle="tab">飲品</a>
-              </li>
-
-          </ul>
-      
-          <!-- 標籤面板：內容區 -->
-          <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="tab2_1">
-                <div class="item">
-                  <img class="abc" src="images/bobo_image/4_7.jpg">
-                              夏慕尼 - 桃園中山東店 
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                  Cumque ducimus minus doloremque id temporibus omnis ipsam ab dolore, labore beatae.
-                </div> 
-              </div>
-              <div role="tabpanel" class="tab-pane" id="tab2_2">
-                
-              </div>
-              <div role="tabpanel" class="tab-pane" id="tab2_3">
-                
-              </div>
-              <div role="tabpanel" class="tab-pane" id="tab2_4">
-                
-              </div>
-              
-          </div>
-      </div>
-
-    	
-      
-
-
-
-    </div>
-
-  </div>
-
-<!--底部平台介紹================================================================-->
+	</div>
 </div>
+
+
 
     <footer >
       <div class="container">
