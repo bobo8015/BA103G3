@@ -19,7 +19,7 @@
     List<FavVO> list = favSvc.getoneFav(mem_no);
     pageContext.setAttribute("list",list); 
     
-
+	
 %>	
 	<jsp:useBean id="storeSvc" scope="page" class="com.store.model.StrService" />
 	

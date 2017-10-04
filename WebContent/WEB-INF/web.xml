@@ -82,5 +82,16 @@
 		<url-pattern>/adv/adv_in.do</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>Schedule</servlet-name>
+		<servlet-class>com.tools.Schedule</servlet-class>
+		<load-on-startup>10</load-on-startup> 
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Schedule</servlet-name>
+		<url-pattern>/Rank_Tools.do</url-pattern>
+	</servlet-mapping>
+	
 	
  </web-app>
