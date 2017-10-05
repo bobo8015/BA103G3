@@ -49,5 +49,20 @@ public class OrditService {
 	public List<OrditVO> getAll() {
 		return dao.getAll();
 	}
+	public List<OrditVO> getAll_month() {
+		return dao.getAll_month();
+	}
+	public List<OrditVO> getDish_class01_all(){
+		return dao.getDish_class01_all();
+	}
+	public List<OrditVO> getDish_class02_all(){
+		return dao.getDish_class02_all();
+	}
+	public List<OrditVO> getDish_class03_all(){
+		return dao.getDish_class03_all();
+	}
+	public List<OrditVO> getDish_class05_all(){
+		return dao.getDish_class05_all();
+	}
 	
 }

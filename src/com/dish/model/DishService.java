@@ -64,5 +64,8 @@ public class DishService {
 	public List<DishVO> getDishClassForStr(String str_no) {
 		return dao.getDishClassForStr(str_no);
 	}
+	public DishVO getDishForStrAll(String dish_no) {
+		return dao.findByDishNo_Str_no(dish_no);
+	}
 	
 }

@@ -128,7 +128,7 @@ public class ProServlet extends HttpServlet{
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("proVO", proVO); 
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/store/str_bonus_02.jsp");
+							.getRequestDispatcher("/easyfood/front-end/class/store/str_bonus_02.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -136,7 +136,7 @@ public class ProServlet extends HttpServlet{
 				
 				proVO =proSvc.addPro1(pro_str, pro_end, str_no, pro_cat, pro_mon, pro_dis);
 				
-				String url = "/store/str_bonus_01.jsp";
+				String url = "/easyfood/front-end/class/store/str_bonus_01.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);
 				
@@ -170,7 +170,7 @@ public class ProServlet extends HttpServlet{
 					if (!errorMsgs.isEmpty()) {
 						req.setAttribute("proVO", proVO); 
 						RequestDispatcher failureView = req
-								.getRequestDispatcher("/store/str_bonus_03.jsp");
+								.getRequestDispatcher("/easyfood/front-end/class/store/str_bonus_03.jsp");
 						failureView.forward(req, res);
 						return;
 					}
@@ -178,7 +178,7 @@ public class ProServlet extends HttpServlet{
 					
 					proVO =proSvc.addPro2(pro_str, pro_end, str_no, pro_cat,pro_dis, dcla_no1,dcla_no2 );
 					
-					String url = "/store/str_bonus_01.jsp";
+					String url = "/easyfood/front-end/class/store/str_bonus_01.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); 
 					successView.forward(req, res);
 					

@@ -84,7 +84,7 @@ public class AdvServlet extends HttpServlet{
 				System.out.println(errorMsgs);
 				advSvc.addAdv(str_no, adv_sta, adv_str, adv_end, adv_img_byte);
 				
-				String url = "/store/str_advertise01.jsp";
+				String url = "/easyfood/front-end/class/store/str_advertise01.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				

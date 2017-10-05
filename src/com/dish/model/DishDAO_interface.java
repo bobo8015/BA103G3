@@ -13,6 +13,6 @@ public interface DishDAO_interface {
 	public List<DishVO> findByArea(String area);
 	public List<DishVO> getALL();
 	public List<DishVO> getDishClassForStr(String str_no);
-	
+	public DishVO findByDishNo_Str_no(String dish_no);
 
 } 

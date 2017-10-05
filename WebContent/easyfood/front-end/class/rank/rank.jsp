@@ -123,7 +123,10 @@ String mem_no = (String) session.getAttribute("mem_no");
                     
                </div>
                  <div role="tabpanel" class="tab-pane" id="tab1_2">
+                 <c:forEach var="rank_month" items="${rank_month}">
                  	<div class="container-fluid item1">
+                 		${rank_month.getKey()} 
+				  		${rank_month.getValue()} 
                     <div class="col-xs-12 col-sm-3">
                     	<div>                    		
                     		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
@@ -138,28 +141,22 @@ String mem_no = (String) session.getAttribute("mem_no");
                     </div>              
                   </div>
 
-                  <div class="container-fluid item1">
-                    <div class="col-xs-12 col-sm-3">
-                      <div>                       
-                        <img class="abc img-responsive" src="images/bobo_image/4_7.jpg"  >
-                      </div>    
-                    </div>
-                    <div class="col-xs-12 col-sm-9">
-                      <h4>夏慕尼 - 4桃園中山東店 </h4>
-                 
-                      <div>
-                     		  我是店家簡介
-                      </div>
-                    </div>              
-                  </div>
+           		</c:forEach>
                  </div>
                  <div role="tabpanel" class="tab-pane" id="tab1_3">
-					         <div class="container-fluid item1">
+                 <c:forEach var="rank_str" items="${rank_str}">
+				  <div class="container-fluid item1">			  
+				 
+				   ${rank_str.getKey()} 
+				   ${rank_str.getValue()} 
+				
+				   	
                     <div class="col-xs-12 col-sm-3">
                       <div>                       
                         <img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
                       </div>    
                     </div>
+                    
                     <div class="col-xs-12 col-sm-9">
                       <h4>夏慕尼 - 5桃園中山東店 </h4>
              
@@ -168,21 +165,8 @@ String mem_no = (String) session.getAttribute("mem_no");
                       </div>
                     </div>              
                   </div>
-
-                  <div class="container-fluid item1">
-                    <div class="col-xs-12 col-sm-3">
-                      <div>                       
-                        <img class="abc img-responsive" src="images/bobo_image/4_7.jpg"  >
-                      </div>    
-                    </div>
-                    <div class="col-xs-12 col-sm-9">
-                      <h4>夏慕尼 - 6桃園中山東店 </h4>
-                 
-                      <div>
-                          我是店家簡介
-                      </div>
-                    </div>              
-                  </div>
+				 </c:forEach>
+                  
                 </div>
              </div>
          </div> 
@@ -210,7 +194,7 @@ String mem_no = (String) session.getAttribute("mem_no");
              <!-- 標籤面板：內容區 -->
              <div class="tab-content">
                  <div role="tabpanel" class="tab-pane active" id="tab2_1">
-                 	<div class="item1">
+                 	<div class="container-fluid item1">
                     <div class="col-xs-12 col-sm-3">
                     	<div>
                     		
@@ -229,7 +213,7 @@ String mem_no = (String) session.getAttribute("mem_no");
                    
                  </div>
                  <div role="tabpanel" class="tab-pane" id="tab2_2">
-                  	<div class="item1">
+                  	<div class="container-fluid item1">
                     <div class="col-xs-12 col-sm-3">
                     	<div>
                     		
@@ -248,7 +232,7 @@ String mem_no = (String) session.getAttribute("mem_no");
                    
                  </div> 
                  <div role="tabpanel" class="tab-pane" id="tab2_3">
-                  	<div class="item1">
+                  	<div class="container-fluid item1">
                     <div class="col-xs-12 col-sm-3">
                     	<div>
                     		
@@ -267,7 +251,7 @@ String mem_no = (String) session.getAttribute("mem_no");
                    
                  </div>
                  <div role="tabpanel" class="tab-pane" id="tab2_4">
-                 	<div class="item1">
+                 	<div class="container-fluid item1">
                     <div class="col-xs-12 col-sm-3">
                     	<div>
                     		

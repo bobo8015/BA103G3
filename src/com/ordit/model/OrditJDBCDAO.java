@@ -267,6 +267,38 @@ public class OrditJDBCDAO implements OrditDAO_interface {
 		return list;
 	}
 
+
+
+	@Override
+	public List<OrditVO> getAll_month() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrditVO> getDish_class01_all() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrditVO> getDish_class02_all() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrditVO> getDish_class03_all() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrditVO> getDish_class05_all() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	public static void main(String[] args) {
 		OrditJDBCDAO dao = new OrditJDBCDAO();
 

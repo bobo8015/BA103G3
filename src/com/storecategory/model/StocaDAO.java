@@ -177,6 +177,14 @@ public class StocaDAO implements StocaDAO_interface {
 			
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			try {
+				if(con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace(System.err);
+			}
 		}
 		
 		return stocaList;

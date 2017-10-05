@@ -16,4 +16,16 @@ public interface OrditDAO_interface {
 
 	public List<OrditVO> getAll();
 	
+	public List<OrditVO> getAll_month();
+	
+	public List<OrditVO> getDish_class01_all();
+	
+	public List<OrditVO> getDish_class02_all();
+	
+	public List<OrditVO> getDish_class03_all();
+	
+	public List<OrditVO> getDish_class05_all();
+	
+	
+	
 }
