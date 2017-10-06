@@ -342,4 +342,10 @@ public class OrditJDBCDAO implements OrditDAO_interface {
 
 	}
 
+	@Override
+	public List<OrditVO> getAll_week() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

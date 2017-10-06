@@ -18,7 +18,7 @@ public class OrditService {
 		orditVO.setOrd_no(ord_no);
 		orditVO.setDish_no(dish_no);
 		orditVO.setOrdit_qua(ordit_qua);
-		orditVO.setOrdit_pri(ordit_pri);
+		orditVO.setOrdit_pri(ordit_pri);  
 		dao.insert(orditVO);
 
 		return orditVO;
@@ -51,6 +51,10 @@ public class OrditService {
 	}
 	public List<OrditVO> getAll_month() {
 		return dao.getAll_month();
+	}
+	
+	public List<OrditVO> getAll_week() {
+		return dao.getAll_week();
 	}
 	public List<OrditVO> getDish_class01_all(){
 		return dao.getDish_class01_all();

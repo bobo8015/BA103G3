@@ -4,6 +4,8 @@
 String mem_no = (String) session.getAttribute("mem_no");
 
 %>
+
+<jsp:useBean id="storeSvc" scope="page" class="com.store.model.StrService" />
 <!DOCTYPE html>
 <html lang="">
 	<head>
@@ -90,37 +92,22 @@ String mem_no = (String) session.getAttribute("mem_no");
              <!-- 標籤面板：內容區 -->
              <div class="tab-content">
                  <div role="tabpanel" class="tab-pane active" id="tab1_1">
-
+					<c:forEach var="rank_week" items="${rank_week}">
                  	<div class="container-fluid item1 ">
+                 		${rank_week.getKey()} 
+				  		${rank_week.getValue()} 
                     <div class="col-xs-12 col-sm-3">
                     	<div>                    		
-                    		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
+                    		<img class="abc img-responsive " src="<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=${rank_week.getKey()}"  >
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
-                      <h4 >夏慕尼 - 1桃園中山東店 </h4>
+                      <h4 >${rank_week.getKey()}</h4>
                  		  <div>燒烤類</div>		
                       <div>我是店家簡介</div>
                     </div>              
                   </div>
-
-                  <div class="container-fluid item1">
-                    <div class="col-xs-12 col-sm-3">
-                      <div>                       
-                        <img class="abc img-responsive" src="images/bobo_image/4_7.jpg"  >
-                      </div>    
-                    </div>
-                    <div class="col-xs-12 col-sm-9">
-                      <h4>夏慕尼 - 2桃園中山東店 </h4>
-                 
-                      <div>
-                     		  我是店家簡介
-                      </div>
-                    </div>              
-                  </div>
-
- 
-                    
+            	</c:forEach>
                </div>
                  <div role="tabpanel" class="tab-pane" id="tab1_2">
                  <c:forEach var="rank_month" items="${rank_month}">
@@ -129,11 +116,11 @@ String mem_no = (String) session.getAttribute("mem_no");
 				  		${rank_month.getValue()} 
                     <div class="col-xs-12 col-sm-3">
                     	<div>                    		
-                    		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
+                    		<img class="abc img-responsive " src="<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=${rank_month.getKey()} "  >
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
-                      <h4>夏慕尼 - 3桃園中山東店 </h4>
+                      <h4>${rank_month.getKey()}</h4>
              
                       <div>
                      	 我是店家簡介
@@ -153,15 +140,15 @@ String mem_no = (String) session.getAttribute("mem_no");
 				   	
                     <div class="col-xs-12 col-sm-3">
                       <div>                       
-                        <img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
+                        <img class="abc img-responsive " src="<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=${rank_str.getKey()}"  >
                       </div>    
                     </div>
                     
                     <div class="col-xs-12 col-sm-9">
-                      <h4>夏慕尼 - 5桃園中山東店 </h4>
+                      <h4> ${rank_str.getKey()} </h4>
              
                       <div>
-                       我是店家簡介
+                     	  我是店家簡介
                       </div>
                     </div>              
                   </div>
@@ -194,81 +181,92 @@ String mem_no = (String) session.getAttribute("mem_no");
              <!-- 標籤面板：內容區 -->
              <div class="tab-content">
                  <div role="tabpanel" class="tab-pane active" id="tab2_1">
+                 	 <c:forEach var="rank_class1" items="${rank_class1}">
                  	<div class="container-fluid item1">
+                 		${rank_class1.getKey()} 
+				  		${rank_class1.getValue()} 
                     <div class="col-xs-12 col-sm-3">
-                    	<div>
-                    		
-                    		<img class="abc img-responsive" src="images/bobo_image/4_7.jpg"  >
+                    	<div>                    		
+                    		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
-                                    夏慕尼 - 1桃園中山東店 
-                      <br><br>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque ducimus minus doloremque id 
-                      temporibus omnis ipsam ab dolore, labore beatae.
+                      <h4>${rank_class1.getKey()} </h4>
+             
+                      <div>
+                     	 我是店家簡介
+                      </div>
+                    </div>              
+                  </div>
 
-                    </div>
-                    
-                  </div>  
+           		</c:forEach>
                    
                  </div>
                  <div role="tabpanel" class="tab-pane" id="tab2_2">
-                  	<div class="container-fluid item1">
+                  	 <c:forEach var="rank_class2" items="${rank_class2}">
+                 	<div class="container-fluid item1">
+                 		${rank_class2.getKey()} 
+				  		${rank_class2.getValue()} 
                     <div class="col-xs-12 col-sm-3">
-                    	<div>
-                    		
-                    		<img class="abc img-responsive" src="images/bobo_image/4_7.jpg"  >
+                    	<div>                    		
+                    		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
-                                    夏慕尼 - 2桃園中山東店 
-                      <br><br>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque ducimus minus doloremque id 
-                      temporibus omnis ipsam ab dolore, labore beatae.
+                      <h4>${rank_class2.getKey()} </h4>
+             
+                      <div>
+                     	 我是店家簡介
+                      </div>
+                    </div>              
+                  </div>
 
-                    </div>
-                    
-                  </div> 
+           		</c:forEach>
                    
                  </div> 
                  <div role="tabpanel" class="tab-pane" id="tab2_3">
-                  	<div class="container-fluid item1">
+                  	 <c:forEach var="rank_class3" items="${rank_class3}">
+                 	<div class="container-fluid item1">
+                 		${rank_class3.getKey()} 
+				  		${rank_class3.getValue()} 
                     <div class="col-xs-12 col-sm-3">
-                    	<div>
-                    		
-                    		<img class="abc img-responsive" src="images/bobo_image/4_7.jpg"  >
+                    	<div>                    		
+                    		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
-                                    夏慕尼 - 3桃園中山東店 
-                      <br><br>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque ducimus minus doloremque id 
-                      temporibus omnis ipsam ab dolore, labore beatae.
+                      <h4>${rank_class3.getKey()}  </h4>
+             
+                      <div>
+                     	 我是店家簡介
+                      </div>
+                    </div>              
+                  </div>
 
-                    </div>
-                    
-                  </div> 
+           		</c:forEach>
                    
                  </div>
                  <div role="tabpanel" class="tab-pane" id="tab2_4">
+                 	 <c:forEach var="rank_class5" items="${rank_class5}">
                  	<div class="container-fluid item1">
+                 		${rank_class5.getKey()} 
+				  		${rank_class5.getValue()} 
                     <div class="col-xs-12 col-sm-3">
-                    	<div>
-                    		
-                    		<img class="abc img-responsive" src="images/bobo_image/4_7.jpg"  >
+                    	<div>                    		
+                    		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
-                                    夏慕尼 - 4桃園中山東店 
-                      <br><br>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque ducimus minus doloremque id 
-                      temporibus omnis ipsam ab dolore, labore beatae.
+                      <h4>${rank_class5.getKey()} </h4>
+             
+                      <div>
+                     	 我是店家簡介
+                      </div>
+                    </div>              
+                  </div>
 
-                    </div>
-                    
-                  </div>  
-                   
-                 </div>
+           		</c:forEach>
+           		</div>
              </div>
          </div> 
      </div>
