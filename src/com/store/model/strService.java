@@ -84,6 +84,11 @@ public StrDAO_interface dao;
 		return dao.findByPrimaryKey(str_no);
 	}
 	
+	public StrVO getOneNameStoca(String str_no) {
+		return dao.findByStrNameStoca(str_no);
+	}
+	
+	
 	public String getOneStrNO(String str_acc) {
 		return dao.findByStrAcc(str_acc);
 		

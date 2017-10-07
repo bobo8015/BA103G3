@@ -253,7 +253,7 @@ public class Schedule  extends HttpServlet{
 			});  
 			
 			
-			
+			System.out.println(rank_str+"month");
 			ServletContext context = getServletContext();
 			context.setAttribute("rank_month", rank_str);
 	 }
@@ -315,7 +315,7 @@ public class Schedule  extends HttpServlet{
 			    }  
 			});  
 			
-			System.out.println(rank_str+"89898989898989");
+			System.out.println(rank_str+"WEEK");
 			
 			ServletContext context = getServletContext();
 			context.setAttribute("rank_week", rank_str);

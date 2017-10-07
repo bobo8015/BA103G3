@@ -16,9 +16,9 @@ import com.storecategory.model.StocaVO;
 
 public class StrJDBCDAO implements StrDAO_interface {
 	
-	private static final String URL = "jdbc:oracle:thin:@10.211.55.3:1521:XE";
-	private static final String USER = " test0101";
-	private static final String PASSWORD = "test0101";
+	private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
+	private static final String USER = "easyfood";
+	private static final String PASSWORD = "easyfood";
 	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
 	
 	private static final String INSERT = "INSERT INTO STORE(STR_NO, STR_NAME, STR_COU, STR_CITY, STR_ADDR, STR_TEL, STR_ATN,"
@@ -35,6 +35,7 @@ public class StrJDBCDAO implements StrDAO_interface {
 	private static final String GET_ALL = "SELECT * FROM STORE ORDER BY STR_NO";
 	private static final String FIND_BY_AREA = "SELECT * FROM STORE WHERE STR_COU||STR_CITY||STR_ADDR LIKE ?";
 	private static final String FIND_BY_STOCA_NO = "SELECT * FROM STORE WHERE STOCA_NO = ?";
+	private static final String FIND_BY_STR_NAME = "SELECT STOCA_NO ,STR_NAME FROM STORE WHERE STR_NO = ?";
 
 	@Override
 	public void insert(StrVO strVO) {
@@ -507,6 +508,45 @@ public class StrJDBCDAO implements StrDAO_interface {
 	public void updateimg(StrVO strVO) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public StrVO findByStrNameStoca(String str_no) {
+		Connection con = null;
+		PreparedStatement state = null;
+		ResultSet rs = null;
+		StrVO strVO = null;
+		
+		try {
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			state = con.prepareStatement(FIND_BY_STR_NAME);
+			state.setString(1,str_no);
+			rs = state.executeQuery();
+
+			while(rs.next()) {
+				 strVO = new StrVO();
+
+				 strVO.setStr_name(rs.getString("STR_NAME"));
+				 strVO.setStoca_no(rs.getString("STOCA_NO"));
+				 		 
+			}
+			
+		} catch (ClassNotFoundException ce) {
+			throw new RuntimeException("Couldn't load database driver. " + ce.getMessage());
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		}  finally {
+			try {
+				if(con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return strVO;
 	}
 	
 

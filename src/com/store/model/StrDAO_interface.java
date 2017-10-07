@@ -12,6 +12,7 @@ public interface StrDAO_interface {
 	public void updateStatus(String str_no, String str_stat);
 	public StrVO findByPrimaryKey(String str_no);
 	public String findByStrAcc(String str_acc);
+	public StrVO findByStrNameStoca(String str_no);
 	public List<StrVO> getAll();
 	public List<StrVO> findByArea(String area);
 	public List<StrVO> findByStoca(String stoca_no);

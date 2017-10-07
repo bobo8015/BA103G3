@@ -42,7 +42,7 @@ public class DishDAO implements DishDAO_interface {
 	private static final String GET_ALL = "SELECT * FROM DISH";
 	private static final String GET_ONE_STR = "SELECT DISTINCT DCLA_NO FROM DISH WHERE STR_NO = ?";
 	private static final String FIND_BY_DISH_NO_STR = "SELECT DISH_NO ,STR_NO FROM DISH WHERE DISH_NO = ?";
-	
+	private static final String FIND_BY_DISH_NAME = "SELECT DISH_NAME ,STR_NO FROM DISH WHERE DISH_NO = ?";
 	@Override
 	public void insert(DishVO dishVO) {
 		
@@ -481,6 +481,43 @@ public class DishDAO implements DishDAO_interface {
 		
 		return dishVO;
 		
+	}
+
+	@Override
+	public DishVO findByDishNo_ForName(String dish_no) {
+		Connection con = null;
+		PreparedStatement state = null;
+		ResultSet rs = null;
+		DishVO dishVO = null;
+		
+		try {
+			con = ds.getConnection();
+			state = con.prepareStatement(FIND_BY_DISH_NAME);
+			state.setString(1, dish_no);
+			rs = state.executeQuery();
+			
+			while(rs.next()) {
+				dishVO = new DishVO();
+				dishVO.setDish_name(rs.getString("dish_name"));
+				dishVO.setStr_no(rs.getString("str_no"));
+
+									
+			}
+			
+		} catch (SQLException se) {
+			throw new RuntimeException("Database error occured. " + se.getMessage());
+		} finally {
+			try {
+				if(con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return dishVO;
 	}
 
 }

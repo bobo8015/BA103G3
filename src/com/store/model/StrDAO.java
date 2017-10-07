@@ -42,6 +42,7 @@ public class StrDAO implements StrDAO_interface {
 	private static final String GET_ALL = "SELECT * FROM STORE ORDER BY STR_NO";
 	private static final String FIND_BY_AREA = "SELECT * FROM STORE WHERE STR_COU||STR_CITY||STR_ADDR LIKE ?";
 	private static final String FIND_BY_STOCA_NO = "SELECT * FROM STORE WHERE STOCA_NO = ?";
+	private static final String FIND_BY_STR_NAME = "SELECT STOCA_NO ,STR_NAME,STR_NOTE FROM STORE WHERE STR_NO = ?";
 	
 	@Override
 	public void insert(StrVO strVO) {
@@ -486,6 +487,42 @@ public class StrDAO implements StrDAO_interface {
 			}
 				
 		}
+	}
+
+	@Override
+	public StrVO findByStrNameStoca(String str_no) {
+		Connection con = null;
+		PreparedStatement state = null;
+		ResultSet rs = null;
+		StrVO strVO = null;
+		
+		try {
+			con = ds.getConnection();
+			state = con.prepareStatement(FIND_BY_STR_NAME);
+			state.setString(1, str_no);
+			rs = state.executeQuery();
+
+			while(rs.next()) {
+				 strVO = new StrVO();
+				 strVO.setStr_name(rs.getString("STR_NAME"));
+				 strVO.setStoca_no(rs.getString("STOCA_NO"));
+				 strVO.setStr_note(rs.getString("STR_NOTE"));
+				 
+			}
+			
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			try {
+				if(con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return strVO;
 	}
 
 

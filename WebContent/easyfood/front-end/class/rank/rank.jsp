@@ -6,6 +6,7 @@ String mem_no = (String) session.getAttribute("mem_no");
 %>
 
 <jsp:useBean id="storeSvc" scope="page" class="com.store.model.StrService" />
+<jsp:useBean id="dishSvc" scope="page" class="com.dish.model.DishService" />
 <!DOCTYPE html>
 <html lang="">
 	<head>
@@ -92,50 +93,50 @@ String mem_no = (String) session.getAttribute("mem_no");
              <!-- 標籤面板：內容區 -->
              <div class="tab-content">
                  <div role="tabpanel" class="tab-pane active" id="tab1_1">
-					<c:forEach var="rank_week" items="${rank_week}">
+					<c:forEach var="rank_week" items="${rank_week}">						
                  	<div class="container-fluid item1 ">
-                 		${rank_week.getKey()} 
-				  		${rank_week.getValue()} 
+                 		
+
                     <div class="col-xs-12 col-sm-3">
                     	<div>                    		
                     		<img class="abc img-responsive " src="<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=${rank_week.getKey()}"  >
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
-                      <h4 >${rank_week.getKey()}</h4>
-                 		  <div>燒烤類</div>		
-                      <div>我是店家簡介</div>
+                      <h3 >${storeSvc.getOneNameStoca(rank_week.getKey()).str_name}</h3>
+                 		  <!--  --><div>${stocaSvc.getOneStoca(storeSvc.getOneNameStoca(rank_week.getKey()).stoca_no).stoca_name}</div>		
+                      <div>店家介紹:${storeSvc.getOneNameStoca(rank_week.getKey()).str_note}</div>
                     </div>              
                   </div>
+          <%--       ${rank_week.getValue()} --%>
             	</c:forEach>
                </div>
                  <div role="tabpanel" class="tab-pane" id="tab1_2">
                  <c:forEach var="rank_month" items="${rank_month}">
                  	<div class="container-fluid item1">
-                 		${rank_month.getKey()} 
-				  		${rank_month.getValue()} 
+                 
+
                     <div class="col-xs-12 col-sm-3">
                     	<div>                    		
                     		<img class="abc img-responsive " src="<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=${rank_month.getKey()} "  >
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
-                      <h4>${rank_month.getKey()}</h4>
-             
+                      <h3>${storeSvc.getOneNameStoca(rank_month.getKey()).str_name}</h3>
+             			<div>${stocaSvc.getOneStoca(storeSvc.getOneNameStoca(rank_month.getKey()).stoca_no).stoca_name}</div>	
                       <div>
-                     	 我是店家簡介
+                     	店家介紹:${storeSvc.getOneNameStoca(rank_month.getKey()).str_note}
                       </div>
                     </div>              
                   </div>
-
+				<%-- ${rank_month.getValue()} --%>
            		</c:forEach>
                  </div>
                  <div role="tabpanel" class="tab-pane" id="tab1_3">
                  <c:forEach var="rank_str" items="${rank_str}">
 				  <div class="container-fluid item1">			  
 				 
-				   ${rank_str.getKey()} 
-				   ${rank_str.getValue()} 
+
 				
 				   	
                     <div class="col-xs-12 col-sm-3">
@@ -145,10 +146,10 @@ String mem_no = (String) session.getAttribute("mem_no");
                     </div>
                     
                     <div class="col-xs-12 col-sm-9">
-                      <h4> ${rank_str.getKey()} </h4>
-             
+                      <h3> ${storeSvc.getOneNameStoca(rank_str.getKey()).str_name}</h3>
+             			<div>${stocaSvc.getOneStoca(storeSvc.getOneNameStoca(rank_str.getKey()).stoca_no).stoca_name}</div>	
                       <div>
-                     	  我是店家簡介
+                     	  店家介紹:${storeSvc.getOneNameStoca(rank_str.getKey()).str_note}
                       </div>
                     </div>              
                   </div>
@@ -183,19 +184,19 @@ String mem_no = (String) session.getAttribute("mem_no");
                  <div role="tabpanel" class="tab-pane active" id="tab2_1">
                  	 <c:forEach var="rank_class1" items="${rank_class1}">
                  	<div class="container-fluid item1">
-                 		${rank_class1.getKey()} 
-				  		${rank_class1.getValue()} 
+                 <%-- 		${rank_class1.getKey()} 
+				  		${rank_class1.getValue()}  --%>
                     <div class="col-xs-12 col-sm-3">
                     	<div>                    		
                     		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
-                      <h4>${rank_class1.getKey()} </h4>
-             
-                      <div>
-                     	 我是店家簡介
-                      </div>
+                   	<H3> ${storeSvc.getOneNameStoca(dishSvc.getOneDish_Name(rank_class1.getKey()).str_no).str_name}</H3>
+                      <h4>${dishSvc.getOneDish_Name(rank_class1.getKey()).dish_name} </h4>
+                      
+             		
+                     
                     </div>              
                   </div>
 
@@ -203,21 +204,19 @@ String mem_no = (String) session.getAttribute("mem_no");
                    
                  </div>
                  <div role="tabpanel" class="tab-pane" id="tab2_2">
-                  	 <c:forEach var="rank_class2" items="${rank_class2}">
+                  	 <c:forEach var="rank_class3" items="${rank_class3}">
                  	<div class="container-fluid item1">
-                 		${rank_class2.getKey()} 
-				  		${rank_class2.getValue()} 
+                 	<%-- 	${rank_class3.getKey()} 
+				  		${rank_class3.getValue()}  --%>
                     <div class="col-xs-12 col-sm-3">
                     	<div>                    		
                     		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
-                      <h4>${rank_class2.getKey()} </h4>
-             
-                      <div>
-                     	 我是店家簡介
-                      </div>
+                     <H3> ${storeSvc.getOneNameStoca(dishSvc.getOneDish_Name(rank_class3.getKey()).str_no).str_name}</H3>
+                      <h4>${dishSvc.getOneDish_Name(rank_class3.getKey()).dish_name} </h4>
+                    
                     </div>              
                   </div>
 
@@ -225,21 +224,18 @@ String mem_no = (String) session.getAttribute("mem_no");
                    
                  </div> 
                  <div role="tabpanel" class="tab-pane" id="tab2_3">
-                  	 <c:forEach var="rank_class3" items="${rank_class3}">
+                  	 <c:forEach var="rank_class2" items="${rank_class2}">
                  	<div class="container-fluid item1">
-                 		${rank_class3.getKey()} 
-				  		${rank_class3.getValue()} 
+                <%--  		${rank_class2.getKey()} 
+				  		${rank_class2.getValue()}  --%>
                     <div class="col-xs-12 col-sm-3">
                     	<div>                    		
                     		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
-                      <h4>${rank_class3.getKey()}  </h4>
-             
-                      <div>
-                     	 我是店家簡介
-                      </div>
+                      <H3> ${storeSvc.getOneNameStoca(dishSvc.getOneDish_Name(rank_class2.getKey()).str_no).str_name}</H3>
+                      <h4>${dishSvc.getOneDish_Name(rank_class2.getKey()).dish_name} </h4>
                     </div>              
                   </div>
 
@@ -249,19 +245,17 @@ String mem_no = (String) session.getAttribute("mem_no");
                  <div role="tabpanel" class="tab-pane" id="tab2_4">
                  	 <c:forEach var="rank_class5" items="${rank_class5}">
                  	<div class="container-fluid item1">
-                 		${rank_class5.getKey()} 
-				  		${rank_class5.getValue()} 
+     <%--             		${rank_class5.getKey()} 
+				  		${rank_class5.getValue()}  --%>
                     <div class="col-xs-12 col-sm-3">
                     	<div>                    		
                     		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
-                      <h4>${rank_class5.getKey()} </h4>
-             
-                      <div>
-                     	 我是店家簡介
-                      </div>
+                      <H3> ${storeSvc.getOneNameStoca(dishSvc.getOneDish_Name(rank_class5.getKey()).str_no).str_name}</H3>
+                      <h4>${dishSvc.getOneDish_Name(rank_class5.getKey()).dish_name} </h4>
+                     
                     </div>              
                   </div>
 

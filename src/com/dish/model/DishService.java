@@ -41,6 +41,10 @@ public class DishService {
 		return dao.findByDishNo(dish_no);
 	}
 	
+	public DishVO getOneDish_Name(String dish_no) {
+		return dao.findByDishNo_ForName(dish_no);
+	}
+	
 	public List<DishVO> getDclaDish(String dcla_no) {
 		return dao.findByDishClass(dcla_no);
 	}
@@ -67,5 +71,6 @@ public class DishService {
 	public DishVO getDishForStrAll(String dish_no) {
 		return dao.findByDishNo_Str_no(dish_no);
 	}
+	
 	
 }

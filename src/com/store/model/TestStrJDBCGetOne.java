@@ -14,34 +14,34 @@ public class TestStrJDBCGetOne {
 	public static void main(String[] args) throws IOException {
 		
 		StrJDBCDAO dao = new StrJDBCDAO();
-		StrVO vo = dao.findByPrimaryKey("STR_0001");
+		StrVO vo = dao.findByStrNameStoca("STR_0001");
 		
-		strNo = vo.getStr_no();
-		strName = vo.getStr_name();
+		strNo = vo.getStr_name();
+		strName = vo.getStoca_no();
 		System.out.println(strNo);
 		System.out.println(strName);
-		
-		byte[] pic = vo.getStr_img();
-		readPicture(pic);
-		
-		String text = vo.getStr_note();
-		readFile(text);
-		
-		System.out.println(vo.getStr_cou());
-		System.out.println(vo.getStr_city());
-		System.out.println(vo.getStr_addr());
-		System.out.println(vo.getStr_tel());
-		System.out.println(vo.getStr_atn());
-		System.out.println(vo.getStr_pre());
-		System.out.println(vo.getStr_ship());
-		System.out.println(vo.getStoca_no());
-		System.out.println(vo.getStr_acc());
-		System.out.println(vo.getStr_pas());
-		System.out.println(vo.getStr_stat());
-		System.out.println(vo.getStr_ma());
-		System.out.println(vo.getStr_rep());
-		System.out.println(vo.getStr_long());
-		System.out.println(vo.getStr_lat());
+//		
+//		byte[] pic = vo.getStr_img();
+//		readPicture(pic);
+//		
+//		String text = vo.getStr_note();
+//		readFile(text);
+//		
+//		System.out.println(vo.getStr_cou());
+//		System.out.println(vo.getStr_city());
+//		System.out.println(vo.getStr_addr());
+//		System.out.println(vo.getStr_tel());
+//		System.out.println(vo.getStr_atn());
+//		System.out.println(vo.getStr_pre());
+//		System.out.println(vo.getStr_ship());
+//		System.out.println(vo.getStoca_no());
+//		System.out.println(vo.getStr_acc());
+//		System.out.println(vo.getStr_pas());
+//		System.out.println(vo.getStr_stat());
+//		System.out.println(vo.getStr_ma());
+//		System.out.println(vo.getStr_rep());
+//		System.out.println(vo.getStr_long());
+//		System.out.println(vo.getStr_lat());
 		
 		
 //		List<StrVO> vo = dao.findByArea("新竹");

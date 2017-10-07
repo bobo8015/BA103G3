@@ -439,4 +439,10 @@ public class DishJDBCDAO implements DishDAO_interface {
 		return null;
 	}
 
+	@Override
+	public DishVO findByDishNo_ForName(String dish_no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -184,6 +184,13 @@ public class TestDishJDBCGet implements DishDAO_interface{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	@Override
+	public DishVO findByDishNo_ForName(String dish_no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }
