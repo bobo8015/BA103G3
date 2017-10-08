@@ -76,8 +76,6 @@ public class Schedule  extends HttpServlet{
 				   }
 				   
 				   map.put(Dish_no, Qrdit_qua);
-				   System.out.println(Dish_no+"類別1");
-				   System.out.println(Qrdit_qua);	
 			   
 			   }
 		   
@@ -90,6 +88,8 @@ public class Schedule  extends HttpServlet{
 			        return o2.getValue().compareTo(o1.getValue()); // 降序  
 			    }  
 			});  
+			
+			
 			
 			ServletContext context = getServletContext();
 			context.setAttribute("rank_class1", rank_class1);
@@ -109,9 +109,6 @@ public class Schedule  extends HttpServlet{
 				   }
 				   
 				   map.put(Dish_no, Qrdit_qua);
-				   System.out.println(Dish_no+"類別2");
-				   System.out.println(Qrdit_qua);	
-			   
 			   }
 		   
 		   List<Map.Entry<String, Integer>> rank_class2 = new ArrayList<Map.Entry<String, Integer>>(map.entrySet()); 
@@ -142,8 +139,6 @@ public class Schedule  extends HttpServlet{
 				   }
 				   
 				   map.put(Dish_no, Qrdit_qua);
-				   System.out.println(Dish_no+"類別3");
-				   System.out.println(Qrdit_qua);	
 			   
 			   }
 		   
@@ -175,9 +170,7 @@ public class Schedule  extends HttpServlet{
 				   }
 				   
 				   map.put(Dish_no, Qrdit_qua);
-				   System.out.println(Dish_no+"類別5");
-				   System.out.println(Qrdit_qua);	
-			   
+
 			   }
 		   
 		   List<Map.Entry<String, Integer>> rank_class5 = new ArrayList<Map.Entry<String, Integer>>(map.entrySet()); 
@@ -209,8 +202,6 @@ public class Schedule  extends HttpServlet{
 			   String Dish_no = orditVO.get(i).getDish_no();
 			   int Qrdit_qua = orditVO.get(i).getOrdit_qua();
 			   
-			   System.out.println(Dish_no);
-			   System.out.println(Qrdit_qua);
 			   
 			   if(map.containsKey(Dish_no)){
 				  Qrdit_qua = Qrdit_qua + map.get(Dish_no); 
@@ -229,7 +220,6 @@ public class Schedule  extends HttpServlet{
 				String str_no = dishVO.getStr_no();				
 				int str_qua = map.get(key);
 	
-				System.out.println(str_no);
 				
 				if(str_map.containsKey(str_no)){
 					 str_qua = str_qua + str_map.get(str_no); 
@@ -272,8 +262,7 @@ public class Schedule  extends HttpServlet{
 			   String Dish_no = orditVO.get(i).getDish_no();
 			   int Qrdit_qua = orditVO.get(i).getOrdit_qua();
 			   
-			   System.out.println(Dish_no);
-			   System.out.println(Qrdit_qua);
+
 			   
 			   if(map.containsKey(Dish_no)){
 				  Qrdit_qua = Qrdit_qua + map.get(Dish_no); 
@@ -283,7 +272,6 @@ public class Schedule  extends HttpServlet{
 			   
 		   	}
 		   
-			System.out.println(map+"所有加總");
 			
 			
 			for (Object key : map.keySet()) {
@@ -292,7 +280,7 @@ public class Schedule  extends HttpServlet{
 				String str_no = dishVO.getStr_no();				
 				int str_qua = map.get(key);
 	
-				System.out.println(str_no);
+
 				
 				if(str_map.containsKey(str_no)){
 					 str_qua = str_qua + str_map.get(str_no); 
@@ -303,7 +291,7 @@ public class Schedule  extends HttpServlet{
 				
 			}
 		
-			System.out.println(str_map+"店家所有加總");
+
 			 	
 			List<Map.Entry<String, Integer>> rank_str = new ArrayList<Map.Entry<String, Integer>>(str_map.entrySet()); 
 			
@@ -315,7 +303,7 @@ public class Schedule  extends HttpServlet{
 			    }  
 			});  
 			
-			System.out.println(rank_str+"WEEK");
+
 			
 			ServletContext context = getServletContext();
 			context.setAttribute("rank_week", rank_str);
@@ -342,12 +330,11 @@ public class Schedule  extends HttpServlet{
 		   }
 		   
 		   map.put(Dish_no, Qrdit_qua);
-		   System.out.println(Dish_no);
-		   System.out.println(Qrdit_qua);
+
 		   
 	   	}
 	   
-		System.out.println(map+"所有加總");
+
 		
 		
 		for (Object key : map.keySet()) {
@@ -355,8 +342,7 @@ public class Schedule  extends HttpServlet{
 			DishVO dishVO = dishSvc.getDishForStrAll(key.toString());
 			String str_no = dishVO.getStr_no();				
 			int str_qua = map.get(key);
-			System.out.println(str_no+"店家");
-			System.out.println(str_qua+"數量");
+
 			              
 			 if(str_map.containsKey(str_no)){
 				 str_qua = str_qua + str_map.get(str_no); 

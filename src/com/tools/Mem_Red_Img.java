@@ -10,7 +10,6 @@ import javax.servlet.http.*;
 import javax.sql.DataSource;
 
 public class Mem_Red_Img extends HttpServlet {
-
 	Connection con;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
@@ -21,11 +20,42 @@ public class Mem_Red_Img extends HttpServlet {
 
 		try {
 			Statement stmt = con.createStatement();
-			String str_no =req.getParameter("str_no");
-			ResultSet rs = stmt.executeQuery("SELECT STR_IMG FROM STORE WHERE STR_NO = '"+str_no+"' ");
+			String no="";
+			String no_value="";
+			String img="";
+			String table="";
+			if(req.getParameter("str_no")!=null){
+				no_value=req.getParameter("str_no");
+				no="STR_NO";
+				img="STR_IMG";
+				table="STORE";
+			}else if(req.getParameter("stoca_no")!=null){
+				no_value=req.getParameter("stoca_no");
+				no="STOCA_NO";
+				img="STOCA_IMG";
+				table="STORECATEGORY";
+			}else if(req.getParameter("adv_no")!=null){
+				no_value=req.getParameter("adv_no");
+				no="ADV_NO";
+				img="ADV_TXT";
+				table="ADVERTISING";
+			}else if(req.getParameter("mem_no")!=null){
+				no_value=req.getParameter("mem_no");
+				no="MEM_NO";
+				img="MEM_IMG";
+				table="MEMBER";
+			}else if(req.getParameter("dish_no")!=null){
+				no_value=req.getParameter("dish_no");
+				no="DISH_NO";
+				img="DISH_IMG";
+				table="DISH";
+			}
+
+			ResultSet rs = stmt.executeQuery(
+				"SELECT "+img+" FROM "+table+" WHERE "+no+" = '"+no_value+"' ");
 
 			if (rs.next()) {
-				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("STR_IMG"));
+				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream(img));
 				byte[] buf = new byte[4 * 1024]; // 4K buffer
 				int len;
 				while ((len = in.read(buf)) != -1) {
@@ -33,7 +63,7 @@ public class Mem_Red_Img extends HttpServlet {
 				}
 				in.close();
 			} else {
-				InputStream in = getServletContext().getResourceAsStream("/NoData/nopic.jpg");
+				InputStream in = getServletContext().getResourceAsStream("/NoData/nopic.png");
 				byte[] buf =new byte [in.available()];
 				in.read(buf);
 				out.write(buf);
@@ -42,7 +72,7 @@ public class Mem_Red_Img extends HttpServlet {
 			rs.close();
 			stmt.close();
 		} catch (Exception e) {
-			InputStream in = getServletContext().getResourceAsStream("/NoData/nopic.jpg");
+			InputStream in = getServletContext().getResourceAsStream("/NoData/nopic.png");
 			byte[] buf =new byte [in.available()];
 			in.read(buf);
 			out.write(buf);
@@ -73,5 +103,4 @@ public class Mem_Red_Img extends HttpServlet {
 			
 		}
 	}
-
 }

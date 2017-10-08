@@ -49,7 +49,9 @@ String mem_no = (String) session.getAttribute("mem_no");
       .item1_title{
       	color: 	#46A3FF; 
       }
-	  
+	  .Ranktext{
+	  	color:red;
+	  }
 
     </style>
 	</head>
@@ -93,13 +95,16 @@ String mem_no = (String) session.getAttribute("mem_no");
              <!-- 標籤面板：內容區 -->
              <div class="tab-content">
                  <div role="tabpanel" class="tab-pane active" id="tab1_1">
-					<c:forEach var="rank_week" items="${rank_week}">						
+					<c:forEach var="rank_week" varStatus="rank" items="${rank_week}" end="9">
+											
                  	<div class="container-fluid item1 ">
-                 		
-
+                 	               	               		
                     <div class="col-xs-12 col-sm-3">
-                    	<div>                    		
-                    		<img class="abc img-responsive " src="<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=${rank_week.getKey()}"  >
+                    	<div class="Ranktext">${rank.count}</div>       
+                    	<div>
+                    		<a href="<%=request.getContextPath()%>/easyfood/front-end/class/search/search.do?action=enter_store_select&select=introduce&str_no=${rank_week.getKey()}" target="_blank" title="">                    		
+                    			<img class="abc img-responsive " src="<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=${rank_week.getKey()}"  >
+                    		</a>
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
@@ -112,13 +117,16 @@ String mem_no = (String) session.getAttribute("mem_no");
             	</c:forEach>
                </div>
                  <div role="tabpanel" class="tab-pane" id="tab1_2">
-                 <c:forEach var="rank_month" items="${rank_month}">
+                 <c:forEach var="rank_month" varStatus="rank" items="${rank_month}" end="9">
                  	<div class="container-fluid item1">
                  
 
                     <div class="col-xs-12 col-sm-3">
-                    	<div>                    		
+                    	<div class="Ranktext">${rank.count}</div>
+                    	<div>
+                    		<a href="<%=request.getContextPath()%>/easyfood/front-end/class/search/search.do?action=enter_store_select&select=introduce&str_no=${rank_month.getKey()}" target="_blank" title="">                       		
                     		<img class="abc img-responsive " src="<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=${rank_month.getKey()} "  >
+                    		</a>
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
@@ -133,15 +141,15 @@ String mem_no = (String) session.getAttribute("mem_no");
            		</c:forEach>
                  </div>
                  <div role="tabpanel" class="tab-pane" id="tab1_3">
-                 <c:forEach var="rank_str" items="${rank_str}">
+                 <c:forEach var="rank_str" varStatus="rank" items="${rank_str}" end="9">
 				  <div class="container-fluid item1">			  
-				 
-
-				
-				   	
+			   	
                     <div class="col-xs-12 col-sm-3">
-                      <div>                       
-                        <img class="abc img-responsive " src="<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=${rank_str.getKey()}"  >
+                    	<div class="Ranktext">${rank.count}</div>
+                      <div>
+                      	<a href="<%=request.getContextPath()%>/easyfood/front-end/class/search/search.do?action=enter_store_select&select=introduce&str_no=${rank_str.getKey()}" target="_blank" title="">   	                       
+                        	<img class="abc img-responsive " src="<%=request.getContextPath()%>/tools/Mem_Red_Img?str_no=${rank_str.getKey()}"   >
+                        </a>	
                       </div>    
                     </div>
                     
@@ -182,13 +190,16 @@ String mem_no = (String) session.getAttribute("mem_no");
              <!-- 標籤面板：內容區 -->
              <div class="tab-content">
                  <div role="tabpanel" class="tab-pane active" id="tab2_1">
-                 	 <c:forEach var="rank_class1" items="${rank_class1}">
+                 	 <c:forEach var="rank_class1" varStatus="rank" items="${rank_class1}" end="9">
                  	<div class="container-fluid item1">
                  <%-- 		${rank_class1.getKey()} 
 				  		${rank_class1.getValue()}  --%>
                     <div class="col-xs-12 col-sm-3">
-                    	<div>                    		
-                    		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
+                    	<div class="Ranktext">${rank.count}</div>
+                    	<div>
+                    		<a href="<%=request.getContextPath()%>/easyfood/front-end/class/search/search.do?action=enter_store_select&select=introduce&str_no=${dishSvc.getOneDish_Name(rank_class1.getKey()).str_no}" target="_blank" title="">                     		
+                    			<img class="abc img-responsive " src="<%=request.getContextPath()%>/tools/Mem_Red_Img?dish_no=${rank_class1.getKey()}"  height="111" >
+                    		</a>	
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
@@ -204,13 +215,16 @@ String mem_no = (String) session.getAttribute("mem_no");
                    
                  </div>
                  <div role="tabpanel" class="tab-pane" id="tab2_2">
-                  	 <c:forEach var="rank_class3" items="${rank_class3}">
+                  	 <c:forEach var="rank_class3" varStatus="rank" items="${rank_class3}" end="9">
                  	<div class="container-fluid item1">
                  	<%-- 	${rank_class3.getKey()} 
 				  		${rank_class3.getValue()}  --%>
                     <div class="col-xs-12 col-sm-3">
-                    	<div>                    		
-                    		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
+                    	<div class="Ranktext">${rank.count}</div>
+                    	<div>
+                    		<a href="<%=request.getContextPath()%>/easyfood/front-end/class/search/search.do?action=enter_store_select&select=introduce&str_no=${dishSvc.getOneDish_Name(rank_class3.getKey()).str_no}" target="_blank" title="">                    		
+                    			<img class="abc img-responsive" src="<%=request.getContextPath()%>/tools/Mem_Red_Img?dish_no=${rank_class3.getKey()}" height="111" >
+                    		</a>
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
@@ -224,13 +238,16 @@ String mem_no = (String) session.getAttribute("mem_no");
                    
                  </div> 
                  <div role="tabpanel" class="tab-pane" id="tab2_3">
-                  	 <c:forEach var="rank_class2" items="${rank_class2}">
+                  	 <c:forEach var="rank_class2" varStatus="rank" items="${rank_class2}" end="9">
                  	<div class="container-fluid item1">
                 <%--  		${rank_class2.getKey()} 
 				  		${rank_class2.getValue()}  --%>
                     <div class="col-xs-12 col-sm-3">
-                    	<div>                    		
-                    		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
+                   		 <div class="Ranktext">${rank.count}</div>
+                    	<div>
+                    		<a href="<%=request.getContextPath()%>/easyfood/front-end/class/search/search.do?action=enter_store_select&select=introduce&str_no=${dishSvc.getOneDish_Name(rank_class2.getKey()).str_no}" target="_blank" title="">                    		
+                    			<img class="abc img-responsive " src="<%=request.getContextPath()%>/tools/Mem_Red_Img?dish_no=${rank_class2.getKey()}" height="111"  >
+                    		</a>
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
@@ -243,13 +260,16 @@ String mem_no = (String) session.getAttribute("mem_no");
                    
                  </div>
                  <div role="tabpanel" class="tab-pane" id="tab2_4">
-                 	 <c:forEach var="rank_class5" items="${rank_class5}">
+                 	 <c:forEach var="rank_class5" varStatus="rank" items="${rank_class5}" end="9">
                  	<div class="container-fluid item1">
      <%--             		${rank_class5.getKey()} 
 				  		${rank_class5.getValue()}  --%>
                     <div class="col-xs-12 col-sm-3">
-                    	<div>                    		
-                    		<img class="abc img-responsive " src="images/bobo_image/4_7.jpg"  >
+                    	<div class="Ranktext">${rank.count}</div>
+                    	<div>
+                    		<a href="<%=request.getContextPath()%>/easyfood/front-end/class/search/search.do?action=enter_store_select&select=introduce&str_no=${dishSvc.getOneDish_Name(rank_class5.getKey()).str_no}" target="_blank" title="">                    		
+                    			<img class="abc img-responsive " src="<%=request.getContextPath()%>/tools/Mem_Red_Img?dish_no=${rank_class5.getKey()}" height="111" >
+                    		</a>
                     	</div>		
                     </div>
                     <div class="col-xs-12 col-sm-9">
